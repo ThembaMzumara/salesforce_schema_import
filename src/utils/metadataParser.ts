@@ -2,7 +2,7 @@ import * as fs from 'fs';
 
 /**
  * Parse a CSV file and convert it into JSON with the field name as the key
- * and the entire row (as a single string) as the attributes.
+ * and map the header columns to their respective values for each row.
  * @param csvFile - Path to the CSV file
  * @returns Parsed JSON object
  */
@@ -20,20 +20,28 @@ export const parseCSV = (csvFile: string) => {
       throw new Error('No "Field API Name" header row found.');
     }
 
+    // Extract the header row and split into columns
+    const headers = rows[headerRowIndex].split(',').map(header => header.trim());
+
     // Parse rows following the header
     const data: Record<string, any[]> = {};
     for (let i = headerRowIndex + 1; i < rows.length; i++) {
-      const row = rows[i].split('\t').map(cell => cell.trim());
+      const row = rows[i].split(',').map(cell => cell.trim());
       if (row.length === 0 || row[0] === '') continue;
 
       const fieldName = row[0]; // Use the first column as the key
-      const fullRowString = rows[i].trim(); // Keep the entire row as a single string
+
+      // Construct the key-value object for the current row
+      const rowObject: Record<string, string> = {};
+      headers.forEach((header, index) => {
+        rowObject[header] = row[index] || ''; // Map header to corresponding value
+      });
 
       // Group by field name
       if (!data[fieldName]) {
         data[fieldName] = [];
       }
-      data[fieldName].push({ fullRowString });
+      data[fieldName].push(rowObject);
     }
 
     return data;
