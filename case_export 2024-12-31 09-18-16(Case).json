@@ -1,0 +1,417 @@
+{
+  "Account_Number__c,Account Number,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.AccountNumber,Account # as noted on the Account record.,,,,00N1H00000GxK2yUAF,Joanne Stamper,2018-10-01 16:50:14,Joanne Stamper,2018-10-01 16:50:14,Case Information (Readonly)": [
+    {
+      "fullRowString": "Account_Number__c,Account Number,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.AccountNumber,Account # as noted on the Account record.,,,,00N1H00000GxK2yUAF,Joanne Stamper,2018-10-01 16:50:14,Joanne Stamper,2018-10-01 16:50:14,Case Information (Readonly)"
+    }
+  ],
+  "AccountId,Store Name,LOOKUP (Account),Lookup(Account),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,Account,,,,,,Case Information (Edit)": [
+    {
+      "fullRowString": "AccountId,Store Name,LOOKUP (Account),Lookup(Account),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,Account,,,,,,Case Information (Edit)"
+    }
+  ],
+  "Additional_Case_Information__c,Additional Case Information,STRING,Text(100),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Active,,,100,0,0,,,,,,00N5c00000JWwM2EAL,Stephanie Thacker,2023-03-09 17:13:13,Stephanie Thacker,2024-03-07 14:40:16,Web Information (Edit)": [
+    {
+      "fullRowString": "Additional_Case_Information__c,Additional Case Information,STRING,Text(100),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Active,,,100,0,0,,,,,,00N5c00000JWwM2EAL,Stephanie Thacker,2023-03-09 17:13:13,Stephanie Thacker,2024-03-07 14:40:16,Web Information (Edit)"
+    }
+  ],
+  "Agent_Confidential_Notes__c,Agent Confidential Notes,TEXTAREA,Rich Text Area(32768),Area for agents to log service confidential notes on a case.,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,32768,0,0,,Use this area to log service-only confidential notes.  Only agents can see this field and its contents.,,,,00N1H00000Gx9XkUAJ,Joanne Stamper,2018-09-21 20:01:48,Joanne Stamper,2018-09-21 20:01:48,Description Information (Edit)": [
+    {
+      "fullRowString": "Agent_Confidential_Notes__c,Agent Confidential Notes,TEXTAREA,Rich Text Area(32768),Area for agents to log service confidential notes on a case.,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,32768,0,0,,Use this area to log service-only confidential notes.  Only agents can see this field and its contents.,,,,00N1H00000Gx9XkUAJ,Joanne Stamper,2018-09-21 20:01:48,Joanne Stamper,2018-09-21 20:01:48,Description Information (Edit)"
+    }
+  ],
+  "AssetId,Asset ID,LOOKUP (Asset),Lookup(Asset),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,,,18,0,0,,,,,Asset,,,,,,": [
+    {
+      "fullRowString": "AssetId,Asset ID,LOOKUP (Asset),Lookup(Asset),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,,,18,0,0,,,,,Asset,,,,,,"
+    }
+  ],
+  "AssetWarrantyId,Asset Warranty ID,LOOKUP (AssetWarranty),,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,AssetWarranty,,,,,,": [
+    {
+      "fullRowString": "AssetWarrantyId,Asset Warranty ID,LOOKUP (AssetWarranty),,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,AssetWarranty,,,,,,"
+    }
+  ],
+  "BusinessHoursId,Business Hours ID,LOOKUP (BusinessHours),Lookup(Business Hours),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,BusinessHours,,,,,,": [
+    {
+      "fullRowString": "BusinessHoursId,Business Hours ID,LOOKUP (BusinessHours),Lookup(Business Hours),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,BusinessHours,,,,,,"
+    }
+  ],
+  "CaseNumber,Case Number,STRING,Auto Number,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,30,0,0,,,,,,,,,,,Case Information (Readonly)": [
+    {
+      "fullRowString": "CaseNumber,Case Number,STRING,Auto Number,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,30,0,0,,,,,,,,,,,Case Information (Readonly)"
+    }
+  ],
+  "ClosedDate,Closed Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,0,0,0,,,,,,,,,,,Web Information (Readonly)": [
+    {
+      "fullRowString": "ClosedDate,Closed Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,0,0,0,,,,,,,,,,,Web Information (Readonly)"
+    }
+  ],
+  "Comments,Internal Comments,TEXTAREA,Text Area(4000),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,4000,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "Comments,Internal Comments,TEXTAREA,Text Area(4000),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,4000,0,0,,,,,,,,,,,"
+    }
+  ],
+  "Consumer_Email__c,Consumer Email,EMAIL,Email,Field used to house the email address when the Case has a CONSUMER contact,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,\"If this Case has a Consumer Contact, supply their email address here.\",,,,00N1H00000Gz2STUAZ,Joanne Stamper,2018-12-12 20:43:20,Joanne Stamper,2018-12-12 20:43:20,": [
+    {
+      "fullRowString": "Consumer_Email__c,Consumer Email,EMAIL,Email,Field used to house the email address when the Case has a CONSUMER contact,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,\"If this Case has a Consumer Contact, supply their email address here.\",,,,00N1H00000Gz2STUAZ,Joanne Stamper,2018-12-12 20:43:20,Joanne Stamper,2018-12-12 20:43:20,"
+    }
+  ],
+  "consumer_name__c,Consumer Name,LOOKUP (Contact),Lookup(Contact),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,\"Optionally, associate the CONSUMER associated with this Case.\",,,consumer_name__r,00N1H00000GxozyUAB,Joanne Stamper,2018-10-22 13:53:42,Joanne Stamper,2018-10-22 15:44:12,": [
+    {
+      "fullRowString": "consumer_name__c,Consumer Name,LOOKUP (Contact),Lookup(Contact),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,\"Optionally, associate the CONSUMER associated with this Case.\",,,consumer_name__r,00N1H00000GxozyUAB,Joanne Stamper,2018-10-22 13:53:42,Joanne Stamper,2018-10-22 15:44:12,"
+    }
+  ],
+  "ContactEmail,Contact Email,EMAIL,Email,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,Email address for the Contact associated with this Case Contact.,,,,,,,,,Case Information (Readonly)": [
+    {
+      "fullRowString": "ContactEmail,Contact Email,EMAIL,Email,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,Email address for the Contact associated with this Case Contact.,,,,,,,,,Case Information (Readonly)"
+    }
+  ],
+  "ContactFax,Contact Fax,PHONE,Phone,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "ContactFax,Contact Fax,PHONE,Phone,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,,,,,,,,,,"
+    }
+  ],
+  "ContactId,Contact ID,LOOKUP (Contact),Lookup(Contact),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,,,18,0,0,,Name of the contact associated with the Account related to this Case.,,,Contact,,,,,,Case Information (Edit)": [
+    {
+      "fullRowString": "ContactId,Contact ID,LOOKUP (Contact),Lookup(Contact),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,,,18,0,0,,Name of the contact associated with the Account related to this Case.,,,Contact,,,,,,Case Information (Edit)"
+    }
+  ],
+  "ContactMobile,Contact Mobile,PHONE,Phone,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "ContactMobile,Contact Mobile,PHONE,Phone,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,,,,,,,,,,"
+    }
+  ],
+  "ContactPhone,Contact Phone,PHONE,Phone,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,Phone number associated to this CASE. May be same or different from phone numbers associated to this contact.,,,,,,,,,Case Information (Readonly)": [
+    {
+      "fullRowString": "ContactPhone,Contact Phone,PHONE,Phone,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,Phone number associated to this CASE. May be same or different from phone numbers associated to this contact.,,,,,,,,,Case Information (Readonly)"
+    }
+  ],
+  "Coupon_Code__c,Coupon Code,STRING,Text(10),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,10,0,0,,Enter PWL coupon code.,,,,00N1H00000Gy1PzUAJ,Joanne Stamper,2018-11-02 20:07:26,Joanne Stamper,2018-11-02 20:07:26,Description Information (Edit)": [
+    {
+      "fullRowString": "Coupon_Code__c,Coupon Code,STRING,Text(10),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,10,0,0,,Enter PWL coupon code.,,,,00N1H00000Gy1PzUAJ,Joanne Stamper,2018-11-02 20:07:26,Joanne Stamper,2018-11-02 20:07:26,Description Information (Edit)"
+    }
+  ],
+  "CreatedById,Created By ID,LOOKUP (User),Lookup(User),,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,CreatedBy,,,,,,System Information (Readonly)": [
+    {
+      "fullRowString": "CreatedById,Created By ID,LOOKUP (User),Lookup(User),,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,CreatedBy,,,,,,System Information (Readonly)"
+    }
+  ],
+  "CreatedDate,Created Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,0,0,0,,,,,,,,,,,Web Information (Readonly)": [
+    {
+      "fullRowString": "CreatedDate,Created Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,0,0,0,,,,,,,,,,,Web Information (Readonly)"
+    }
+  ],
+  "Description,Description,TEXTAREA,Long Text Area(32000),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,32000,0,0,,,,,,,,,,,Description Information (Edit)": [
+    {
+      "fullRowString": "Description,Description,TEXTAREA,Long Text Area(32000),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,32000,0,0,,,,,,,,,,,Description Information (Edit)"
+    }
+  ],
+  "District__c,District,STRING,Formula (Text),\"Formula field, which brings District field to Case object.\",TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.District__c,,,,,00N1H00000GxUHTUA3,Joanne Stamper,2018-10-11 18:53:19,Joanne Stamper,2018-10-11 18:53:19,": [
+    {
+      "fullRowString": "District__c,District,STRING,Formula (Text),\"Formula field, which brings District field to Case object.\",TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.District__c,,,,,00N1H00000GxUHTUA3,Joanne Stamper,2018-10-11 18:53:19,Joanne Stamper,2018-10-11 18:53:19,"
+    }
+  ],
+  "District_Manager__c,District Manager,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,\"Account.Regional_District_Assignment__r.District_Manager__r.FirstName + \"\" \"\" + Account.Regional_District_Assignment__r.District_Manager__r.LastName\",Name of the District Manager assigned to the Account/Store associated with this Case.,,,,00N1H00000Gxp3bUAB,Joanne Stamper,2018-10-22 15:00:38,Joanne Stamper,2018-10-22 15:25:16,Additional Information (Readonly)": [
+    {
+      "fullRowString": "District_Manager__c,District Manager,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,\"Account.Regional_District_Assignment__r.District_Manager__r.FirstName + \"\" \"\" + Account.Regional_District_Assignment__r.District_Manager__r.LastName\",Name of the District Manager assigned to the Account/Store associated with this Case.,,,,00N1H00000Gxp3bUAB,Joanne Stamper,2018-10-22 15:00:38,Joanne Stamper,2018-10-22 15:25:16,Additional Information (Readonly)"
+    }
+  ],
+  "Email_of_District_Manager__c,Email of District Manager,STRING,Formula (Text),Hidden field that pulls the district manager email from account/regional district assignment district manager user.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Regional_District_Assignment__r.District_Manager__r.Email,\"Email of the district manager, used in email alerts.\",,,,00N1H00000GxblYUAR,Mark McCarthy,2018-10-15 22:52:15,Mark McCarthy,2018-10-16 16:39:08,": [
+    {
+      "fullRowString": "Email_of_District_Manager__c,Email of District Manager,STRING,Formula (Text),Hidden field that pulls the district manager email from account/regional district assignment district manager user.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Regional_District_Assignment__r.District_Manager__r.Email,\"Email of the district manager, used in email alerts.\",,,,00N1H00000GxblYUAR,Mark McCarthy,2018-10-15 22:52:15,Mark McCarthy,2018-10-16 16:39:08,"
+    }
+  ],
+  "Email_of_Regional_Manager__c,Email of Regional Manager,STRING,Formula (Text),Hidden field that pulls the regional manager email from account/regional district assignment regional manager user.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Regional_District_Assignment__r.Regional_Manager__r.Email,\"Email of the regional manager, used in email alerts.\",,,,00N1H00000GxcS8UAJ,Mark McCarthy,2018-10-16 16:41:42,Mark McCarthy,2018-10-25 01:40:08,": [
+    {
+      "fullRowString": "Email_of_Regional_Manager__c,Email of Regional Manager,STRING,Formula (Text),Hidden field that pulls the regional manager email from account/regional district assignment regional manager user.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Regional_District_Assignment__r.Regional_Manager__r.Email,\"Email of the regional manager, used in email alerts.\",,,,00N1H00000GxcS8UAJ,Mark McCarthy,2018-10-16 16:41:42,Mark McCarthy,2018-10-25 01:40:08,"
+    }
+  ],
+  "Email_of_Sales_Executive__c,Email of Sales Executive,STRING,Formula (Text),Hidden field that retrieves the email of the sales executive from a custom label. Changes to the value should be made in Custom Labels in Setup.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0, $Label.Sales_Executive_Email_Address,\"Email of the sales executive, used in email alerts.\",,,,00N1H00000GxkioUAB,Mark McCarthy,2018-10-17 15:08:04,Mark McCarthy,2018-10-17 15:11:13,": [
+    {
+      "fullRowString": "Email_of_Sales_Executive__c,Email of Sales Executive,STRING,Formula (Text),Hidden field that retrieves the email of the sales executive from a custom label. Changes to the value should be made in Custom Labels in Setup.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0, $Label.Sales_Executive_Email_Address,\"Email of the sales executive, used in email alerts.\",,,,00N1H00000GxkioUAB,Mark McCarthy,2018-10-17 15:08:04,Mark McCarthy,2018-10-17 15:11:13,"
+    }
+  ],
+  "Email_of_Service_Director__c,Email of Service Director,STRING,Formula (Text),Hidden field that retrieves the email of the service director from a custom label. Changes to the value should be made in Custom Labels in Setup.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0, $Label.Service_Director_Email_Address,\"Email of the service director, used in email alerts.\",,,,00N1H00000GxkjSUAR,Mark McCarthy,2018-10-17 15:10:56,Mark McCarthy,2018-10-17 15:10:56,": [
+    {
+      "fullRowString": "Email_of_Service_Director__c,Email of Service Director,STRING,Formula (Text),Hidden field that retrieves the email of the service director from a custom label. Changes to the value should be made in Custom Labels in Setup.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0, $Label.Service_Director_Email_Address,\"Email of the service director, used in email alerts.\",,,,00N1H00000GxkjSUAR,Mark McCarthy,2018-10-17 15:10:56,Mark McCarthy,2018-10-17 15:10:56,"
+    }
+  ],
+  "Equipment_Item__c,Equipment Item,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000GCDiwEAH,Stephanie Thacker,2023-06-28 16:44:23,Stephanie Thacker,2023-06-28 16:44:23,Equipment Quality (Edit)": [
+    {
+      "fullRowString": "Equipment_Item__c,Equipment Item,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000GCDiwEAH,Stephanie Thacker,2023-06-28 16:44:23,Stephanie Thacker,2023-06-28 16:44:23,Equipment Quality (Edit)"
+    }
+  ],
+  "Id,Case ID,ID,Lookup(),,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "Id,Case ID,ID,Lookup(),,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,,,,,,,"
+    }
+  ],
+  "IsClosed,Closed,BOOLEAN,Checkbox,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,0,0,0,,,false,,,,,,,,": [
+    {
+      "fullRowString": "IsClosed,Closed,BOOLEAN,Checkbox,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,0,0,0,,,false,,,,,,,,"
+    }
+  ],
+  "IsClosedOnCreate,Closed When Created,BOOLEAN,Checkbox,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,false,,,,,,,,": [
+    {
+      "fullRowString": "IsClosedOnCreate,Closed When Created,BOOLEAN,Checkbox,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,false,,,,,,,,"
+    }
+  ],
+  "IsDeleted,Deleted,BOOLEAN,Checkbox,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,false,,,,,,,,": [
+    {
+      "fullRowString": "IsDeleted,Deleted,BOOLEAN,Checkbox,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,false,,,,,,,,"
+    }
+  ],
+  "IsEscalated,Escalated,BOOLEAN,Checkbox,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,\"If checked, this case needs attention due to either failing time-sensitive case management rules or management visibility.\",false,,,,,,,,Case Information (Edit)": [
+    {
+      "fullRowString": "IsEscalated,Escalated,BOOLEAN,Checkbox,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,\"If checked, this case needs attention due to either failing time-sensitive case management rules or management visibility.\",false,,,,,,,,Case Information (Edit)"
+    }
+  ],
+  "Language,Language,PICKLIST,Picklist,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,40,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "Language,Language,PICKLIST,Picklist,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,40,0,0,,,,,,,,,,,"
+    }
+  ],
+  "Last_Status_Change_DateTime__c,Last Status Change DateTime,DATETIME,Date/Time,Records the last time the status was changed.,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,Records the last time the status was changed.,,now(),,00N1H00000GxV0dUAF,Mark McCarthy,2018-10-12 18:58:15,Mark McCarthy,2018-10-12 19:06:17,": [
+    {
+      "fullRowString": "Last_Status_Change_DateTime__c,Last Status Change DateTime,DATETIME,Date/Time,Records the last time the status was changed.,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,Records the last time the status was changed.,,now(),,00N1H00000GxV0dUAF,Mark McCarthy,2018-10-12 18:58:15,Mark McCarthy,2018-10-12 19:06:17,"
+    }
+  ],
+  "LastModifiedById,Last Modified By ID,LOOKUP (User),Lookup(User),,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,LastModifiedBy,,,,,,System Information (Readonly)": [
+    {
+      "fullRowString": "LastModifiedById,Last Modified By ID,LOOKUP (User),Lookup(User),,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,LastModifiedBy,,,,,,System Information (Readonly)"
+    }
+  ],
+  "LastModifiedDate,Last Modified Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "LastModifiedDate,Last Modified Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,,,,,,,,,"
+    }
+  ],
+  "LastReferencedDate,Last Referenced Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "LastReferencedDate,Last Referenced Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,,,,,,,,,"
+    }
+  ],
+  "LastViewedDate,Last Viewed Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "LastViewedDate,Last Viewed Date,DATETIME,Date/Time,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,,,,,,,,,,"
+    }
+  ],
+  "Lead__c,Lead,LOOKUP (Lead),Lookup(Lead),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,Lead__r,00N5c00000FVAOqEAP,Stephanie Thacker,2021-10-20 14:19:54,Stephanie Thacker,2021-10-20 14:19:54,Case Information (Edit)": [
+    {
+      "fullRowString": "Lead__c,Lead,LOOKUP (Lead),Lookup(Lead),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,Lead__r,00N5c00000FVAOqEAP,Stephanie Thacker,2021-10-20 14:19:54,Stephanie Thacker,2021-10-20 14:19:54,Case Information (Edit)"
+    }
+  ],
+  "Marketing_Sub_Status__c,Marketing Sub-Status,PICKLIST,Picklist,\"These dependent picklist items is necessary only when a Case Type is \"\"Marketing\"\".\",TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,Please select the correct Marketing Case sub- status.,,,,00N1H00000GxIebUAF,Joanne Stamper,2018-09-27 15:48:02,Joanne Stamper,2018-10-30 17:09:51,Case Information (Edit)": [
+    {
+      "fullRowString": "Marketing_Sub_Status__c,Marketing Sub-Status,PICKLIST,Picklist,\"These dependent picklist items is necessary only when a Case Type is \"\"Marketing\"\".\",TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,Please select the correct Marketing Case sub- status.,,,,00N1H00000GxIebUAF,Joanne Stamper,2018-09-27 15:48:02,Joanne Stamper,2018-10-30 17:09:51,Case Information (Edit)"
+    }
+  ],
+  "MasterRecordId,Master Record ID,LOOKUP (Case),,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,MasterRecord,,,,,,": [
+    {
+      "fullRowString": "MasterRecordId,Master Record ID,LOOKUP (Case),,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,18,0,0,,,,,MasterRecord,,,,,,"
+    }
+  ],
+  "Name_of_Contact_for_Service__c,Name of Contact for Service,TEXTAREA,Text Area(255),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000GCDixEAH,Stephanie Thacker,2023-06-28 16:44:23,Stephanie Thacker,2023-06-28 16:44:23,Equipment Quality (Edit)": [
+    {
+      "fullRowString": "Name_of_Contact_for_Service__c,Name of Contact for Service,TEXTAREA,Text Area(255),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000GCDixEAH,Stephanie Thacker,2023-06-28 16:44:23,Stephanie Thacker,2023-06-28 16:44:23,Equipment Quality (Edit)"
+    }
+  ],
+  "Note_Card_Sent__c,Note Card Sent?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,Have you sent this customer or consumer a follow-up note card?,,,,00N1H00000GxIiOUAV,Joanne Stamper,2018-09-27 18:21:09,Joanne Stamper,2018-09-27 18:21:09,Description Information (Edit)": [
+    {
+      "fullRowString": "Note_Card_Sent__c,Note Card Sent?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,Have you sent this customer or consumer a follow-up note card?,,,,00N1H00000GxIiOUAV,Joanne Stamper,2018-09-27 18:21:09,Joanne Stamper,2018-09-27 18:21:09,Description Information (Edit)"
+    }
+  ],
+  "Origin,Case Origin,PICKLIST,Picklist,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,\"If not populated, select the appropriate incoming \"\"channel\"\" for this case.\",,,,,,,,,Description Information (Required)": [
+    {
+      "fullRowString": "Origin,Case Origin,PICKLIST,Picklist,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,\"If not populated, select the appropriate incoming \"\"channel\"\" for this case.\",,,,,,,,,Description Information (Required)"
+    }
+  ],
+  "Other_Case_Type__c,Other Case Type,TEXTAREA,Text Area(255),\"Text area for user to specify \"\"Other\"\" Case Type\",TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,\"Please provide specifics related to \"\"Other\"\" Case Type\",,,,00N1H00000GxIiYUAV,Joanne Stamper,2018-09-27 18:24:07,Joanne Stamper,2018-09-27 18:24:07,Case Information (Edit)": [
+    {
+      "fullRowString": "Other_Case_Type__c,Other Case Type,TEXTAREA,Text Area(255),\"Text area for user to specify \"\"Other\"\" Case Type\",TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,\"Please provide specifics related to \"\"Other\"\" Case Type\",,,,00N1H00000GxIiYUAV,Joanne Stamper,2018-09-27 18:24:07,Joanne Stamper,2018-09-27 18:24:07,Case Information (Edit)"
+    }
+  ],
+  "OwnerId,Owner ID,\"LOOKUP (Group, User)\",\"Lookup(User,Group)\",,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,,,18,0,0,,,,,Owner,,,,,,Case Information (Edit)": [
+    {
+      "fullRowString": "OwnerId,Owner ID,\"LOOKUP (Group, User)\",\"Lookup(User,Group)\",,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,,,18,0,0,,,,,Owner,,,,,,Case Information (Edit)"
+    }
+  ],
+  "ParentId,Parent Case ID,LOOKUP (Case),Lookup(Case),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,Parent,,,,,,": [
+    {
+      "fullRowString": "ParentId,Parent Case ID,LOOKUP (Case),Lookup(Case),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,Parent,,,,,,"
+    }
+  ],
+  "Phone_Number_of_Contact_for_Service__c,Phone Number of Contact for Service,PHONE,Phone,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,,,,,00N5c00000GCDiyEAH,Stephanie Thacker,2023-06-28 16:44:23,Stephanie Thacker,2023-06-28 16:44:23,Equipment Quality (Edit)": [
+    {
+      "fullRowString": "Phone_Number_of_Contact_for_Service__c,Phone Number of Contact for Service,PHONE,Phone,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,,,,,00N5c00000GCDiyEAH,Stephanie Thacker,2023-06-28 16:44:23,Stephanie Thacker,2023-06-28 16:44:23,Equipment Quality (Edit)"
+    }
+  ],
+  "Priority,Priority,PICKLIST,Picklist,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,Select the appropriate priority for this case.,Normal,,,,,,,,Case Information (Edit)": [
+    {
+      "fullRowString": "Priority,Priority,PICKLIST,Picklist,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,Select the appropriate priority for this case.,Normal,,,,,,,,Case Information (Edit)"
+    }
+  ],
+  "Reason,Case Reason,PICKLIST,Picklist,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "Reason,Case Reason,PICKLIST,Picklist,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,,,,,,,,,,"
+    }
+  ],
+  "Region__c,Region,STRING,Formula (Text),Formula field to bring Region field to Case object.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Region__c,,,,,00N1H00000GxUHOUA3,Joanne Stamper,2018-10-11 18:51:52,Joanne Stamper,2018-10-11 18:51:52,": [
+    {
+      "fullRowString": "Region__c,Region,STRING,Formula (Text),Formula field to bring Region field to Case object.,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Region__c,,,,,00N1H00000GxUHOUA3,Joanne Stamper,2018-10-11 18:51:52,Joanne Stamper,2018-10-11 18:51:52,"
+    }
+  ],
+  "Requires_Management_Attention__c,Requires Management Attention,BOOLEAN,Checkbox,\"This box is used to escalate a case which needs help from management - Service, Sales & Operations\",TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,Check this box to escalate and flag this case for assistance from management.,false,,,00N1H00000GxIaKUAV,Joanne Stamper,2018-09-27 15:30:30,Joanne Stamper,2018-09-27 15:30:30,Case Information (Edit)": [
+    {
+      "fullRowString": "Requires_Management_Attention__c,Requires Management Attention,BOOLEAN,Checkbox,\"This box is used to escalate a case which needs help from management - Service, Sales & Operations\",TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,Check this box to escalate and flag this case for assistance from management.,false,,,00N1H00000GxIaKUAV,Joanne Stamper,2018-09-27 15:30:30,Joanne Stamper,2018-09-27 15:30:30,Case Information (Edit)"
+    }
+  ],
+  "Route__c,z_del_Route #,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,Select the Route number associated with this case.,,,,00N1H00000GxIidUAF,Joanne Stamper,2018-09-27 18:26:39,Joanne Stamper,2018-10-08 14:54:57,": [
+    {
+      "fullRowString": "Route__c,z_del_Route #,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,Select the Route number associated with this case.,,,,00N1H00000GxIidUAF,Joanne Stamper,2018-09-27 18:26:39,Joanne Stamper,2018-10-08 14:54:57,"
+    }
+  ],
+  "Route_number__c,Route #,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Route__c,Account/Store Service Route #.  Contact Sales Operations to update a Route #.,,,,00N1H00000GxQedUAF,Joanne Stamper,2018-10-10 11:54:31,Joanne Stamper,2018-10-10 11:54:31,Additional Information (Readonly)": [
+    {
+      "fullRowString": "Route_number__c,Route #,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Route__c,Account/Store Service Route #.  Contact Sales Operations to update a Route #.,,,,00N1H00000GxQedUAF,Joanne Stamper,2018-10-10 11:54:31,Joanne Stamper,2018-10-10 11:54:31,Additional Information (Readonly)"
+    }
+  ],
+  "Scheduled_Service_Day__c,Scheduled Service Day,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,TEXT (Account.Scheduled_Service_Day__c),Scheduled Service Day associated with this Account/Store.  Contact Sales Operations to change the Scheduled Service Day.,,,,00N1H00000GxRoFUAV,Joanne Stamper,2018-10-10 15:23:55,Joanne Stamper,2018-10-10 15:23:55,Additional Information (Readonly)": [
+    {
+      "fullRowString": "Scheduled_Service_Day__c,Scheduled Service Day,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,TEXT (Account.Scheduled_Service_Day__c),Scheduled Service Day associated with this Account/Store.  Contact Sales Operations to change the Scheduled Service Day.,,,,00N1H00000GxRoFUAV,Joanne Stamper,2018-10-10 15:23:55,Joanne Stamper,2018-10-10 15:23:55,Additional Information (Readonly)"
+    }
+  ],
+  "Serial_Number__c,Serial Number,TEXTAREA,Text Area(255),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000GCDizEAH,Stephanie Thacker,2023-06-28 16:44:23,Stephanie Thacker,2023-06-28 16:44:23,Equipment Quality (Edit)": [
+    {
+      "fullRowString": "Serial_Number__c,Serial Number,TEXTAREA,Text Area(255),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000GCDizEAH,Stephanie Thacker,2023-06-28 16:44:23,Stephanie Thacker,2023-06-28 16:44:23,Equipment Quality (Edit)"
+    }
+  ],
+  "Service_Frequency__c,Service Frequency,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,TEXT (Account.Service_Frequency__c),Service Frequency associated with the Account/Store. Contact Sales Operations to change the Service Frequency.,,,,00N1H00000GxRoKUAV,Joanne Stamper,2018-10-10 15:26:24,Joanne Stamper,2018-10-10 15:26:24,Additional Information (Readonly)": [
+    {
+      "fullRowString": "Service_Frequency__c,Service Frequency,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,TEXT (Account.Service_Frequency__c),Service Frequency associated with the Account/Store. Contact Sales Operations to change the Service Frequency.,,,,00N1H00000GxRoKUAV,Joanne Stamper,2018-10-10 15:26:24,Joanne Stamper,2018-10-10 15:26:24,Additional Information (Readonly)"
+    }
+  ],
+  "Service_Stop__c,Service Stop,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Service_Stop__c,Service Stop associated with this Account/Store.  Contact Sales Operations to change the Service Stop.,,,,00N1H00000GxRMfUAN,Joanne Stamper,2018-10-10 13:17:00,Joanne Stamper,2018-10-10 13:17:00,Additional Information (Readonly)": [
+    {
+      "fullRowString": "Service_Stop__c,Service Stop,STRING,Formula (Text),,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,1300,0,0,Account.Service_Stop__c,Service Stop associated with this Account/Store.  Contact Sales Operations to change the Service Stop.,,,,00N1H00000GxRMfUAN,Joanne Stamper,2018-10-10 13:17:00,Joanne Stamper,2018-10-10 13:17:00,Additional Information (Readonly)"
+    }
+  ],
+  "SourceId,Case Source ID,\"LOOKUP (EmailMessage, LiveChatTranscript, MessagingSession, SocialPost, SvcCatalogRequest)\",\"Lookup(Social Post,Chat Transcript,Email Message,Service Catalog Request,Messaging Session)\",,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,Source,,,,,,": [
+    {
+      "fullRowString": "SourceId,Case Source ID,\"LOOKUP (EmailMessage, LiveChatTranscript, MessagingSession, SocialPost, SvcCatalogRequest)\",\"Lookup(Social Post,Chat Transcript,Email Message,Service Catalog Request,Messaging Session)\",,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,18,0,0,,,,,Source,,,,,,"
+    }
+  ],
+  "Status,Status,PICKLIST,Picklist,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,,,255,0,0,,Current status for this case.,New,,,,,,,,Case Information (Required)": [
+    {
+      "fullRowString": "Status,Status,PICKLIST,Picklist,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,,,255,0,0,,Current status for this case.,New,,,,,,,,Case Information (Required)"
+    }
+  ],
+  "Subject,Subject,STRING,Text(255),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,,,,,,,,,,Case Information (Edit)": [
+    {
+      "fullRowString": "Subject,Subject,STRING,Text(255),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,,,,,,,,,,Case Information (Edit)"
+    }
+  ],
+  "SuppliedCompany,Company,STRING,Text(80),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Active,,,80,0,0,,Company name captured in the PWL/Hunt Brothers Web-to-Case form.,,,,,,,,,Web Information (Readonly)": [
+    {
+      "fullRowString": "SuppliedCompany,Company,STRING,Text(80),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Active,,,80,0,0,,Company name captured in the PWL/Hunt Brothers Web-to-Case form.,,,,,,,,,Web Information (Readonly)"
+    }
+  ],
+  "SuppliedEmail,Email Address,EMAIL,Email,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,Email address captured in the PWL/Hunt Brothers Web-to-Case form.,,,,,,,,,Web Information (Readonly)": [
+    {
+      "fullRowString": "SuppliedEmail,Email Address,EMAIL,Email,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,Email address captured in the PWL/Hunt Brothers Web-to-Case form.,,,,,,,,,Web Information (Readonly)"
+    }
+  ],
+  "SuppliedName,Name,STRING,Text(80),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,Name captured in the PWL/Hunt Brothers Web-to-Case form.,,,,,,,,,Web Information (Readonly)": [
+    {
+      "fullRowString": "SuppliedName,Name,STRING,Text(80),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,Name captured in the PWL/Hunt Brothers Web-to-Case form.,,,,,,,,,Web Information (Readonly)"
+    }
+  ],
+  "SuppliedPhone,Phone,STRING,Text(40),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,Phone number captured in the PWL/Hunt Brothers Web-to-Case form.,,,,,,,,,Web Information (Readonly)": [
+    {
+      "fullRowString": "SuppliedPhone,Phone,STRING,Text(40),,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,40,0,0,,Phone number captured in the PWL/Hunt Brothers Web-to-Case form.,,,,,,,,,Web Information (Readonly)"
+    }
+  ],
+  "SystemModstamp,System Modstamp,DATETIME,Date/Time,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,0,0,0,,,,,,,,,,,": [
+    {
+      "fullRowString": "SystemModstamp,System Modstamp,DATETIME,Date/Time,,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,,,,0,0,0,,,,,,,,,,,"
+    }
+  ],
+  "Type,Case Type,PICKLIST,Picklist,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,Case Type (formerly category) for this case.,,,,,,,,,Case Information (Edit)": [
+    {
+      "fullRowString": "Type,Case Type,PICKLIST,Picklist,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,,,,255,0,0,,Case Type (formerly category) for this case.,,,,,,,,,Case Information (Edit)"
+    }
+  ],
+  "Under_Warranty__c,Under Warranty?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,Is the equipment in question for this Case under warranty?,,,,00N1H00000GxozZUAR,Joanne Stamper,2018-10-22 13:49:13,Joanne Stamper,2018-10-22 13:49:13,Description Information (Edit)": [
+    {
+      "fullRowString": "Under_Warranty__c,Under Warranty?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,Is the equipment in question for this Case under warranty?,,,,00N1H00000GxozZUAR,Joanne Stamper,2018-10-22 13:49:13,Joanne Stamper,2018-10-22 13:49:13,Description Information (Edit)"
+    }
+  ],
+  "VCP_or_Consumer__c,VCP or Consumer,STRING,Text(20),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,20,0,0,,,,,,00N5c00000JWkD3EAL,Stephanie Thacker,2022-11-22 21:17:04,Stephanie Thacker,2022-11-22 21:17:04,Case Information (Edit)": [
+    {
+      "fullRowString": "VCP_or_Consumer__c,VCP or Consumer,STRING,Text(20),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,20,0,0,,,,,,00N5c00000JWkD3EAL,Stephanie Thacker,2022-11-22 21:17:04,Stephanie Thacker,2022-11-22 21:17:04,Case Information (Edit)"
+    }
+  ],
+  "Web_Address__c,Web Address,TEXTAREA,Text Area(255),address of the store,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,Address of the Store,,,,00N5c00000JWkCUEA1,Stephanie Thacker,2022-11-22 20:30:40,Stephanie Thacker,2022-11-22 20:30:40,Web Information (Edit)": [
+    {
+      "fullRowString": "Web_Address__c,Web Address,TEXTAREA,Text Area(255),address of the store,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,Address of the Store,,,,00N5c00000JWkCUEA1,Stephanie Thacker,2022-11-22 20:30:40,Stephanie Thacker,2022-11-22 20:30:40,Web Information (Edit)"
+    }
+  ],
+  "Web_City__c,Web City,STRING,Text(20),city of the store,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,20,0,0,,city of the store,,,,00N5c00000JWkCeEAL,Stephanie Thacker,2022-11-22 20:31:52,Stephanie Thacker,2022-11-22 20:31:52,Web Information (Edit)": [
+    {
+      "fullRowString": "Web_City__c,Web City,STRING,Text(20),city of the store,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,20,0,0,,city of the store,,,,00N5c00000JWkCeEAL,Stephanie Thacker,2022-11-22 20:31:52,Stephanie Thacker,2022-11-22 20:31:52,Web Information (Edit)"
+    }
+  ],
+  "web_customer_number__c,Web Customer Number,STRING,Text(15),Field house Customer Number (Account Number) entered on the Web-to-Case form.,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,15,0,0,,Value captured from the PWL/Hunt Brothers Web-to-Case form.,,,,00N1H00000GxxtNUAR,Joanne Stamper,2018-10-25 16:45:58,Joanne Stamper,2018-10-25 16:50:13,Web Information (Readonly)": [
+    {
+      "fullRowString": "web_customer_number__c,Web Customer Number,STRING,Text(15),Field house Customer Number (Account Number) entered on the Web-to-Case form.,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,15,0,0,,Value captured from the PWL/Hunt Brothers Web-to-Case form.,,,,00N1H00000GxxtNUAR,Joanne Stamper,2018-10-25 16:45:58,Joanne Stamper,2018-10-25 16:50:13,Web Information (Readonly)"
+    }
+  ],
+  "Web_Customer_Number_or_Store_Name__c,Web Customer Number or Store Name,STRING,Text(80),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,,,,,00N5c00000JrQVsEAN,Stephanie Thacker,2024-03-06 18:26:03,Stephanie Thacker,2024-03-06 18:32:40,Web Information (Edit)": [
+    {
+      "fullRowString": "Web_Customer_Number_or_Store_Name__c,Web Customer Number or Store Name,STRING,Text(80),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,80,0,0,,,,,,00N5c00000JrQVsEAN,Stephanie Thacker,2024-03-06 18:26:03,Stephanie Thacker,2024-03-06 18:32:40,Web Information (Edit)"
+    }
+  ],
+  "Web_Delivery_Day__c,Web Delivery Day,STRING,Text(20),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,20,0,0,,,,,,00N5c00000JrUBgEAN,Stephanie Thacker,2024-05-09 18:49:07,Stephanie Thacker,2024-05-09 18:49:07,Web Information (Edit)": [
+    {
+      "fullRowString": "Web_Delivery_Day__c,Web Delivery Day,STRING,Text(20),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,20,0,0,,,,,,00N5c00000JrUBgEAN,Stephanie Thacker,2024-05-09 18:49:07,Stephanie Thacker,2024-05-09 18:49:07,Web Information (Edit)"
+    }
+  ],
+  "Web_State__c,Web State,STRING,Text(20),state of the store,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,20,0,0,,state of the store,,,,00N5c00000JWkCZEA1,Stephanie Thacker,2022-11-22 20:31:19,Stephanie Thacker,2022-11-22 20:31:19,Web Information (Edit)": [
+    {
+      "fullRowString": "Web_State__c,Web State,STRING,Text(20),state of the store,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,20,0,0,,state of the store,,,,00N5c00000JWkCZEA1,Stephanie Thacker,2022-11-22 20:31:19,Stephanie Thacker,2022-11-22 20:31:19,Web Information (Edit)"
+    }
+  ],
+  "Web_Store_Name__c,Web Store Name,STRING,Text(255),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000JWwMCEA1,Stephanie Thacker,2023-03-09 17:24:30,Stephanie Thacker,2024-03-06 18:21:43,Web Information (Edit)": [
+    {
+      "fullRowString": "Web_Store_Name__c,Web Store Name,STRING,Text(255),,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000JWwMCEA1,Stephanie Thacker,2023-03-09 17:24:30,Stephanie Thacker,2024-03-06 18:21:43,Web Information (Edit)"
+    }
+  ],
+  "web_zip_code__c,Web Zip Code,STRING,Text(5),Field capture zip code from Web-to-Case form.,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,5,0,0,,Zip code captured from the PWL/Hunt Brother's Web-to-Case form.,,,,00N1H00000GxxtXUAR,Joanne Stamper,2018-10-25 16:47:53,Joanne Stamper,2019-01-02 16:04:06,Web Information (Readonly)": [
+    {
+      "fullRowString": "web_zip_code__c,Web Zip Code,STRING,Text(5),Field capture zip code from Web-to-Case form.,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,5,0,0,,Zip code captured from the PWL/Hunt Brother's Web-to-Case form.,,,,00N1H00000GxxtXUAR,Joanne Stamper,2018-10-25 16:47:53,Joanne Stamper,2019-01-02 16:04:06,Web Information (Readonly)"
+    }
+  ],
+  "What_kind_of_suggestion_do_you_have__c,What kind of suggestion do you have?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000JWwMHEA1,Stephanie Thacker,2023-03-09 17:30:50,Stephanie Thacker,2023-03-09 17:30:50,Web Information (Edit)": [
+    {
+      "fullRowString": "What_kind_of_suggestion_do_you_have__c,What kind of suggestion do you have?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000JWwMHEA1,Stephanie Thacker,2023-03-09 17:30:50,Stephanie Thacker,2023-03-09 17:30:50,Web Information (Edit)"
+    }
+  ],
+  "What_part_were_you_unsatified_with__c,What part were you unsatified with?,PICKLIST,Picklist,What part of the experience were you unsatisfied with?,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,What part of the experience were you unsatisfied with?,,,,00N5c00000JWkCAEA1,Stephanie Thacker,2022-11-22 20:27:46,Stephanie Thacker,2022-11-22 20:27:46,Web Information (Edit)": [
+    {
+      "fullRowString": "What_part_were_you_unsatified_with__c,What part were you unsatified with?,PICKLIST,Picklist,What part of the experience were you unsatisfied with?,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,What part of the experience were you unsatisfied with?,,,,00N5c00000JWkCAEA1,Stephanie Thacker,2022-11-22 20:27:46,Stephanie Thacker,2022-11-22 20:27:46,Web Information (Edit)"
+    }
+  ],
+  "When_did_you_visit__c,When did you visit?,DATE,Date,When did you visit this location?,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,When did you visit this location?,,,,00N5c00000JWkC5EAL,Stephanie Thacker,2022-11-22 20:26:01,Stephanie Thacker,2022-11-22 20:26:01,Web Information (Edit)": [
+    {
+      "fullRowString": "When_did_you_visit__c,When did you visit?,DATE,Date,When did you visit this location?,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,0,0,0,,When did you visit this location?,,,,00N5c00000JWkC5EAL,Stephanie Thacker,2022-11-22 20:26:01,Stephanie Thacker,2022-11-22 20:26:01,Web Information (Edit)"
+    }
+  ],
+  "Would_you_like_to_be_Contacted__c,Would you like to be Contacted?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000JWkCKEA1,Stephanie Thacker,2022-11-22 20:29:21,Stephanie Thacker,2022-11-22 20:29:21,Web Information (Edit)": [
+    {
+      "fullRowString": "Would_you_like_to_be_Contacted__c,Would you like to be Contacted?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000JWkCKEA1,Stephanie Thacker,2022-11-22 20:29:21,Stephanie Thacker,2022-11-22 20:29:21,Web Information (Edit)"
+    }
+  ],
+  "Would_you_like_to_Opt_In_to_DCE__c,Would you like to Opt-In to DCE?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000JWkCPEA1,Stephanie Thacker,2022-11-22 20:29:54,Stephanie Thacker,2022-11-22 20:29:54,Web Information (Edit)": [
+    {
+      "fullRowString": "Would_you_like_to_Opt_In_to_DCE__c,Would you like to Opt-In to DCE?,PICKLIST,Picklist,,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,,,255,0,0,,,,,,00N5c00000JWkCPEA1,Stephanie Thacker,2022-11-22 20:29:54,Stephanie Thacker,2022-11-22 20:29:54,Web Information (Edit)"
+    }
+  ]
+}

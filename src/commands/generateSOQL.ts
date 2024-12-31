@@ -9,7 +9,6 @@ export const generateSOQL = (jsonFile: string) => {
   try {
     // Read the file content
     const data = fs.readFileSync(jsonFile, 'utf-8');
-    console.log('File content:', data);  // Log file content for debugging
 
     // Parse the JSON data
     let metadata;

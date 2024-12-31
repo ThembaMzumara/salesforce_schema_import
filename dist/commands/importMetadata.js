@@ -32,14 +32,22 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.importMetadata = void 0;
 const fs = __importStar(require("fs"));
 const metadataParser_1 = require("../utils/metadataParser");
+const path_1 = __importDefault(require("path"));
+/**
+ * Convert CSV metadata to JSON format while retaining all columns dynamically.
+ * @param csvFile - Path to the input CSV file
+ */
 const importMetadata = (csvFile) => {
     try {
         const jsonData = (0, metadataParser_1.parseCSV)(csvFile);
-        const jsonFilePath = `${csvFile}.json`;
+        const jsonFilePath = `${path_1.default.basename(csvFile, '.csv')}.json`;
         fs.writeFileSync(jsonFilePath, JSON.stringify(jsonData, null, 2));
         console.log(`Metadata successfully imported to ${jsonFilePath}`);
     }
