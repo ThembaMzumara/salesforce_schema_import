@@ -4,7 +4,7 @@ import { generateSOQL } from './commands/generateSOQL';
 import { generateCLICommands } from './commands/generateCLICommands';
 
 program
-  .name('salesforce-schema-migration')
+  .name('ssm')
   .description('CLI tool to migrate Salesforce schema metadata and data')
   .version('1.0.0');
 

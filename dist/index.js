@@ -15,7 +15,7 @@ const importMetadata_1 = require("./commands/importMetadata");
 const generateSOQL_1 = require("./commands/generateSOQL");
 const generateCLICommands_1 = require("./commands/generateCLICommands");
 commander_1.program
-    .name('salesforce-schema-migration')
+    .name('ssm')
     .description('CLI tool to migrate Salesforce schema metadata and data')
     .version('1.0.0');
 // Command to import metadata from CSV to JSON

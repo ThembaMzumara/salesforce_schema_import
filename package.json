@@ -4,18 +4,24 @@
   "description": "A CLI tool for migrating Salesforce metadata and data",
   "main": "dist/index.js",
   "bin": {
-    "salesforce-migration": "./dist/index.js"
+    "ssm": "./dist/index.js"
   },
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
     "dev": "ts-node src/index.ts"
   },
-  "keywords": ["salesforce", "cli", "metadata", "migration"],
+  "keywords": [
+    "salesforce",
+    "cli",
+    "metadata",
+    "migration"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "commander": "^13.0.0",
+    "csv-parser": "^3.1.0",
     "inquirer": "^12.3.0"
   },
   "devDependencies": {
