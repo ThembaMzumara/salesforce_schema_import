@@ -38,9 +38,20 @@ const fs = __importStar(require("fs"));
 const salesforceCliHandler_1 = require("../utils/salesforceCliHandler");
 const generateCLICommands = (jsonFile) => {
     try {
+        // Read the file
         const data = fs.readFileSync(jsonFile, 'utf-8');
-        const metadata = JSON.parse(data);
+        // Ensure the file is valid JSON
+        let metadata;
+        try {
+            metadata = JSON.parse(data);
+        }
+        catch (parseError) {
+            console.error('Error: The file is not valid JSON. Please check its structure.');
+            return;
+        }
+        // Generate CLI commands
         const cliCommands = (0, salesforceCliHandler_1.generateCLI)(metadata);
+        // Print each command to the console
         cliCommands.forEach((command) => console.log(command));
     }
     catch (error) {
