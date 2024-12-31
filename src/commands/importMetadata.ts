@@ -9,7 +9,7 @@ import path from 'path';
 export const importMetadata = (csvFile: string) => {
   try {
     const jsonData = parseCSV(csvFile);
-    const jsonFilePath = `${path.basename(csvFile, '.csv')}.json`;
+    const jsonFilePath = `./csv_files/output/${path.basename(csvFile, '.csv')}.json`;
     fs.writeFileSync(jsonFilePath, JSON.stringify(jsonData, null, 2));
     console.log(`Metadata successfully imported to ${jsonFilePath}`);
   } catch (error) {
