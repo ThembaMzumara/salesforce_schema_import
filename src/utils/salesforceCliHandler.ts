@@ -1,6 +1,15 @@
 export const generateCLI = (metadata: any) => {
   const cliCommands: string[] = [];
 
+  // Define mapping for standard fields to CLI flags
+  const fieldFlagMapping: { [key: string]: string } = {
+    "Field API Name": "-n",
+    "Field Label": "-l",
+    "Help Text": "-d",
+    "Length": "--length",
+    "Is Required on Create": "--required",
+  };
+
   for (const objectName in metadata) {
     // Create object command
     const createObjectCommand = `sfdx force:object:create -n ${objectName}`;
@@ -10,11 +19,28 @@ export const generateCLI = (metadata: any) => {
     metadata[objectName].forEach((field: any) => {
       const fieldName = field["Field API Name"] || "Unknown_Field";
       const fieldType = field["Data Type"] || "Unknown_Type";
-      const label = field["Field Label"] || "";
 
-      // Generate field command
-      const createFieldCommand = `sfdx force:field:create -n ${fieldName} -t ${fieldType} -l "${label}" -r ${objectName}`;
-      cliCommands.push(createFieldCommand);
+      // Start building the field command
+      let createFieldCommand = `sfdx force:field:create -t ${fieldType} -r ${objectName}`;
+
+      // Dynamically add mapped fields
+      for (const [jsonKey, cliFlag] of Object.entries(fieldFlagMapping)) {
+        if (field[jsonKey]) {
+          const value = field[jsonKey];
+          createFieldCommand += ` ${cliFlag} "${value}"`;
+        }
+      }
+
+      // Handle special cases
+      if (fieldType.includes("Formula") && field["Formula Text"]) {
+        createFieldCommand += ` --formula "${field["Formula Text"]}"`;
+      }
+
+      if (fieldType === "Picklist" && Array.isArray(field["Picklist Values"])) {
+        createFieldCommand += ` --picklist-values "${field["Picklist Values"].join(";")}"`;
+      }
+
+      cliCommands.push(createFieldCommand.trim());
     });
   }
 
