@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import { generateCLI } from '../utils/salesforceCliHandler';
+import * as path from 'path';
 
 export const generateCLICommands = (jsonFile: string) => {
   try {
@@ -18,8 +19,18 @@ export const generateCLICommands = (jsonFile: string) => {
     // Generate CLI commands
     const cliCommands = generateCLI(metadata);
 
-    // Print each command to the console
-    cliCommands.forEach((command) => console.log(command));
+    // Ensure output directory exists
+    const outputDir = './csv_files/output/';
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+
+    // Create output file name
+    const outputFileName = path.join(outputDir, 'cli_commands.soql');
+
+    // Write commands to the file
+    fs.writeFileSync(outputFileName, cliCommands.join('\n'), 'utf-8');
+    console.log(`CLI commands have been written to: ${outputFileName}`);
   } catch (error) {
     console.error('Error generating CLI commands:', error);
   }

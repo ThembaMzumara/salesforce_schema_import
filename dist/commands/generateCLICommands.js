@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateCLICommands = void 0;
 const fs = __importStar(require("fs"));
 const salesforceCliHandler_1 = require("../utils/salesforceCliHandler");
+const path = __importStar(require("path"));
 const generateCLICommands = (jsonFile) => {
     try {
         // Read the file
@@ -51,8 +52,16 @@ const generateCLICommands = (jsonFile) => {
         }
         // Generate CLI commands
         const cliCommands = (0, salesforceCliHandler_1.generateCLI)(metadata);
-        // Print each command to the console
-        cliCommands.forEach((command) => console.log(command));
+        // Ensure output directory exists
+        const outputDir = './csv_files/output/';
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+        }
+        // Create output file name
+        const outputFileName = path.join(outputDir, 'cli_commands.soql');
+        // Write commands to the file
+        fs.writeFileSync(outputFileName, cliCommands.join('\n'), 'utf-8');
+        console.log(`CLI commands have been written to: ${outputFileName}`);
     }
     catch (error) {
         console.error('Error generating CLI commands:', error);
