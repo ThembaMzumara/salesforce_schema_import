@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import chardet
+import time
 from utils import validate_csv, create_output_dir
 
 def detect_encoding(file_path):
@@ -23,6 +24,12 @@ def convert_to_utf8(file_path, output_path):
             for line in infile:
                 outfile.write(line)
     print(f"File converted to UTF-8 and saved as {output_path}")
+
+def generate_unique_filename(base_path, extension):
+    """Generate a unique filename based on the current timestamp"""
+    timestamp = time.strftime("%Y%m%d_%H%M%S")
+    base_name = os.path.splitext(os.path.basename(base_path))[0]
+    return os.path.join(os.path.dirname(base_path), f"{base_name}_{timestamp}{extension}")
 
 def process_csv(input_csv_path, output_dir):
     # Step 1: Validate CSV File
@@ -47,7 +54,9 @@ def process_csv(input_csv_path, output_dir):
     # Step 5: Convert DataFrame to JSON
     try:
         json_data = df.to_json(orient='records', lines=False)
-        json_filename = os.path.join(output_dir, "output.json")
+
+        # Generate a unique output filename with timestamp
+        json_filename = generate_unique_filename(output_dir + "/output", ".json")
         
         with open(json_filename, 'w') as json_file:
             json.dump(json.loads(json_data), json_file, indent=4)
