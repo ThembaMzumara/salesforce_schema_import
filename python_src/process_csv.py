@@ -2,7 +2,27 @@ import pandas as pd
 import json
 import os
 import sys
+import chardet
 from utils import validate_csv, create_output_dir
+
+def detect_encoding(file_path):
+    """Detect file encoding using chardet"""
+    with open(file_path, 'rb') as f:
+        raw_data = f.read()
+        result = chardet.detect(raw_data)
+        return result['encoding']
+
+def convert_to_utf8(file_path, output_path):
+    """Convert CSV file to UTF-8 encoding"""
+    detected_encoding = detect_encoding(file_path)
+    print(f"Detected encoding: {detected_encoding}")
+
+    # Read the file with the detected encoding and write it in UTF-8
+    with open(file_path, mode='r', encoding=detected_encoding) as infile:
+        with open(output_path, mode='w', encoding='utf-8', newline='') as outfile:
+            for line in infile:
+                outfile.write(line)
+    print(f"File converted to UTF-8 and saved as {output_path}")
 
 def process_csv(input_csv_path, output_dir):
     # Step 1: Validate CSV File
@@ -13,14 +33,18 @@ def process_csv(input_csv_path, output_dir):
     # Step 2: Create Output Directory if it doesn't exist
     create_output_dir(output_dir)
 
-    # Step 3: Read the CSV file into a DataFrame
+    # Step 3: Convert the CSV file to UTF-8 if needed
+    utf8_csv_path = os.path.join(output_dir, "utf8_" + os.path.basename(input_csv_path))
+    convert_to_utf8(input_csv_path, utf8_csv_path)
+
+    # Step 4: Read the CSV file into a DataFrame (now in UTF-8)
     try:
-        df = pd.read_csv(input_csv_path)
+        df = pd.read_csv(utf8_csv_path)
     except Exception as e:
         print(f"Error reading CSV file: {e}")
         sys.exit(1)
 
-    # Step 4: Convert DataFrame to JSON
+    # Step 5: Convert DataFrame to JSON
     try:
         json_data = df.to_json(orient='records', lines=False)
         json_filename = os.path.join(output_dir, "output.json")
