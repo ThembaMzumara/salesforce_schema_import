@@ -1,7 +1,37 @@
 import { program } from 'commander';
-import { spawnSync } from 'child_process'; // Use spawnSync for synchronous execution
+import { spawnSync } from 'child_process'; // Use spawnSync for subprocess execution
 import { generateSOQL } from './commands/generateSOQL';
 import { generateCLICommands } from './commands/generateCLICommands';
+import * as path from 'path';
+
+// Function to run a Python script within a virtual environment
+function runPythonScriptWithVenv(scriptPath: string, args: string[]) {
+  try {
+    // Escape each argument for safe shell execution
+    const sanitizedArgs = args.map(arg => `"${arg.replace(/(["$`\\])/g, '\\$1')}"`).join(' ');
+
+    // Use bash to activate the venv and run the script
+    const venvActivateCommand = `bash -c "source ${path.resolve('./python_src/venv/bin/activate')} && python3 ${scriptPath} ${sanitizedArgs}"`;
+
+    const result = spawnSync(venvActivateCommand, {
+      shell: true,
+      stdio: 'inherit', // Forward output to terminal
+    });
+
+    // Check for subprocess errors
+    if (result.error) {
+      throw new Error(`Failed to execute Python script: ${result.error.message}`);
+    }
+
+    if (result.status !== 0) {
+      throw new Error(`Python script exited with code ${result.status}`);
+    }
+
+    console.log('✅ Python script executed successfully.');
+  } catch (error) {
+    console.error('❌ Error running Python script with venv:', error);
+  }
+}
 
 program
   .name('ssm')
@@ -15,29 +45,11 @@ program
   .argument('<csvFile>', 'CSV file with Salesforce metadata')
   .action((csvFile: string) => {
     try {
-      const outputDir = './csv_files/'; // Specify or generate dynamically
-
-      // Use spawnSync to run the Python script
-      const pythonProcess = spawnSync('python3', ['python_src/process_csv.py', csvFile, outputDir], {
-        encoding: 'utf-8', // Ensure the output is returned as a string
-      });
-
-      // Check if the process ran successfully
-      if (pythonProcess.error) {
-        throw pythonProcess.error;
-      }
-
-      // Output the results (stdout)
-      console.log('Python script executed successfully:');
-      console.log(pythonProcess.stdout); // Log the output of the Python script
-
-      // If there were errors, they will be in stderr
-      if (pythonProcess.stderr) {
-        console.error('Python script error output:');
-        console.error(pythonProcess.stderr); // Log any error output
-      }
+      const outputDir = './csv_files/'; // Output directory for processed files
+      const scriptPath = path.resolve('./python_src/process_csv.py');
+      runPythonScriptWithVenv(scriptPath, [csvFile, outputDir]);
     } catch (error) {
-      console.error('Error importing metadata using Python script:', error);
+      console.error('❌ Error importing metadata:', error);
     }
   });
 
@@ -50,7 +62,7 @@ program
     try {
       await generateSOQL(jsonFile);
     } catch (error) {
-      console.error('Error generating SOQL:', error);
+      console.error('❌ Error generating SOQL:', error);
     }
   });
 
@@ -63,7 +75,7 @@ program
     try {
       await generateCLICommands(jsonFile);
     } catch (error) {
-      console.error('Error generating CLI commands:', error);
+      console.error('❌ Error generating CLI commands:', error);
     }
   });
 
