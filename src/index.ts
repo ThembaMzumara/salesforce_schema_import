@@ -1,5 +1,5 @@
 import { program } from 'commander';
-import { importMetadata } from './commands/importMetadata';
+import { spawnSync } from 'child_process'; // Use spawnSync for synchronous execution
 import { generateSOQL } from './commands/generateSOQL';
 import { generateCLICommands } from './commands/generateCLICommands';
 
@@ -13,11 +13,31 @@ program
   .command('import-metadata')
   .description('Import metadata from a CSV file')
   .argument('<csvFile>', 'CSV file with Salesforce metadata')
-  .action(async (csvFile: string) => {
+  .action((csvFile: string) => {
     try {
-      await importMetadata(csvFile);
+      const outputDir = './csv_files/'; // Specify or generate dynamically
+
+      // Use spawnSync to run the Python script
+      const pythonProcess = spawnSync('python3', ['python_src/process_csv.py', csvFile, outputDir], {
+        encoding: 'utf-8', // Ensure the output is returned as a string
+      });
+
+      // Check if the process ran successfully
+      if (pythonProcess.error) {
+        throw pythonProcess.error;
+      }
+
+      // Output the results (stdout)
+      console.log('Python script executed successfully:');
+      console.log(pythonProcess.stdout); // Log the output of the Python script
+
+      // If there were errors, they will be in stderr
+      if (pythonProcess.stderr) {
+        console.error('Python script error output:');
+        console.error(pythonProcess.stderr); // Log any error output
+      }
     } catch (error) {
-      console.error('Error importing metadata:', error);
+      console.error('Error importing metadata using Python script:', error);
     }
   });
 
@@ -44,19 +64,6 @@ program
       await generateCLICommands(jsonFile);
     } catch (error) {
       console.error('Error generating CLI commands:', error);
-    }
-  });
-
-// Command to import data from a CSV to Salesforce org
-program
-  .command('import-data')
-  .description('Import data from a CSV to Salesforce org')
-  .argument('<csvFile>', 'CSV file with Salesforce data')
-  .action(async (csvFile: string) => {
-    try {
-      await importMetadata(csvFile);  // This should be a different function for importing data
-    } catch (error) {
-      console.error('Error importing data:', error);
     }
   });
 

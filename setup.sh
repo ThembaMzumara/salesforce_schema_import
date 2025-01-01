@@ -50,7 +50,7 @@ if [ ! -d "venv" ]; then
   echo "✅ Virtual environment created."
 fi
 
-# Activate the virtual environment
+# Activate the virtual environment before installing dependencies
 source venv/bin/activate
 echo "✅ Python virtual environment activated."
 
