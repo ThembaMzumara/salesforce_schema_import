@@ -35,23 +35,23 @@ else
   echo "✅ pip3 is installed: $(pip3 --version)"
 fi
 
-# Check virtualenv installation (optional but recommended)
-if ! command -v virtualenv &> /dev/null; then
-  echo "⚠️ virtualenv is not installed. Installing virtualenv for Python isolation..."
-  pip3 install virtualenv
+# Check if Python virtual environment is available
+if ! command -v venv &> /dev/null; then
+  echo "⚠️ venv is not available. Installing the python3-venv package..."
+  sudo apt install python3-venv
 else
-  echo "✅ virtualenv is installed."
+  echo "✅ venv is available."
 fi
 
-# Create and activate a Python virtual environment (optional)
-if [ ! -d "python_env" ]; then
+# Create and activate a Python virtual environment (in venv directory)
+if [ ! -d "venv" ]; then
   echo "Creating a Python virtual environment..."
-  python3 -m virtualenv python_env
+  python3 -m venv venv
   echo "✅ Virtual environment created."
 fi
 
 # Activate the virtual environment
-source python_env/bin/activate
+source venv/bin/activate
 echo "✅ Python virtual environment activated."
 
 # Install Python dependencies
@@ -67,6 +67,21 @@ echo "✅ Python virtual environment deactivated."
 echo "Installing Node.js dependencies..."
 npm install
 echo "✅ Node.js dependencies installed."
+
+# Build TypeScript to JavaScript
+echo "Building TypeScript code..."
+npm run build  # This runs `tsc` as defined in your package.json scripts
+echo "✅ TypeScript build completed."
+
+# Add shebang to the top of dist/index.js
+echo "Adding shebang to dist/index.js..."
+sed -i '1s/^/#!\/usr\/bin\/env node\n/' dist/index.js
+echo "✅ Shebang added to dist/index.js."
+
+# Link the build output using npm link (not manually creating symlink)
+echo "Linking build output using npm link..."
+npm link
+echo "✅ Build output linked."
 
 # Final message
 echo "🎉 Setup complete! You're ready to use the CLI tool."

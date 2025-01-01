@@ -1,0 +1,46 @@
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Logs
+*.log
+
+# Output folder (for generated files)
+output/
+
+# Environment Files
+.env
+.env.* 
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+
+# Optional: Ignore Salesforce authentication files
+.sfdx/
+
+# Python-specific files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+ENV/
+*.pdm.toml
+pip-wheel-metadata/
+*.egg-info/
+
+# Other
+*.tgz
+
+# Git-specific files (ignore .gitmodules if using submodules)
+.gitmodules
