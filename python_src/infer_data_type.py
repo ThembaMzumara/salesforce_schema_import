@@ -1,10 +1,36 @@
 import pandas as pd
 import datetime
+import re
+
+# Regex patterns for Salesforce data types
+regex_patterns = {
+    "Number": r"^-?\d+(\.\d+)?$",  # Matches integers and decimals
+    "Currency": r"^\$?\d+(\.\d{1,2})?$",  # Matches currency format
+    "Date": r"^\d{4}-\d{2}-\d{2}$",  # Matches date format YYYY-MM-DD
+    "Date/Time": r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$",  # Matches date-time format
+    "Email": r"^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$",  # Matches email format
+    "Phone": r"^\+?\(?\d{1,4}\)?[\s\-]?\(?\d{1,4}\)?[\s\-]?\(?\d{1,4}\)?[\s\-]?\(?\d{1,4}\)?$",  # Matches phone format
+    "URL": r"^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$",  # Matches URL format
+    "Checkbox": r"^(true|false)$",  # Matches boolean values
+    "Picklist": r"^[\w\s\-]+$",  # Matches a single option with alphanumeric characters, spaces, and hyphens.  # Example Picklist (replace with your options)
+    "Picklist (Multi-select)": r"^((Red|Blue|Green|Yellow);)*$",  # Example Multi-select (replace with your options)
+    "Text Area": r"^.{1,255}$",  # Matches text with max 255 characters
+    "Text Area (Long)": r"^.{1,131072}$",  # Matches long text up to 131072 characters
+    "Text Area (Rich)": r"<[^>]+>",  # Matches rich text with HTML tags
+    "Geolocation": r"\((-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)\)",  # Matches geolocation in (lat, lon)
+    "Auto Number": r"^[A-Za-z]{3}-\d{4}$",  # Matches Auto Number format
+    "Percent": r"^\d{1,2}(\.\d{1,2})?%$",  # Matches percent format
+}
 
 def infer_data_type(column_data):
     """Infer the data type of the column based on its content."""
     # Ensure all data is numeric where possible
     numeric_data = pd.to_numeric(column_data, errors='coerce')
+
+    # Check against regex patterns for known data types
+    for field_type, pattern in regex_patterns.items():
+        if column_data.apply(lambda x: isinstance(x, str) and re.match(pattern, str(x))).any():
+            return field_type
 
     # Check if all values are integers
     if numeric_data.dropna().apply(lambda x: x.is_integer() if isinstance(x, float) else False).all():
@@ -24,18 +50,6 @@ def infer_data_type(column_data):
     # Check if all values are booleans
     if column_data.apply(lambda x: isinstance(x, bool)).all():
         return "Checkbox"
-    
-    # Check for URL (simple heuristic)
-    if column_data.apply(lambda x: isinstance(x, str) and x.startswith("http")).any():
-        return "URL"
-    
-    # Check for emails (simple heuristic)
-    if column_data.apply(lambda x: isinstance(x, str) and "@" in x).any():
-        return "Email"
-    
-    # Check for phone numbers (simple heuristic)
-    if column_data.apply(lambda x: isinstance(x, str) and x.replace("-", "").isdigit()).any():
-        return "Phone"
     
     # Check if any value in the column is a picklist (text)
     if column_data.apply(lambda x: isinstance(x, str)).any():
