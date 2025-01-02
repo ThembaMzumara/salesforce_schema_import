@@ -49,12 +49,27 @@ def match_salesforce_field_type(inferred_type):
     salesforce_types = {
         "Number": "Number",
         "Currency": "Currency",
+        "Date": "Date",
         "Date/Time": "Date/Time",
         "Checkbox": "Checkbox",
         "URL": "URL",
         "Email": "Email",
         "Phone": "Phone",
         "Picklist": "Picklist",
-        "Text": "Text"
+        "Picklist (Multi-select)": "Picklist (Multi-select)",
+        "Text": "Text",
+        "Text Area": "Text Area",
+        "Text Area (Long)": "Text Area (Long)",
+        "Text Area (Rich)": "Text Area (Rich)",
+        "Auto Number": "Auto Number",
+        "Percent": "Percent",
+        "Geolocation": "Geolocation",
+        "Formula": "Formula",
+        "Roll-Up Summary": "Roll-Up Summary",
+        "Lookup Relationship": "Lookup Relationship",
+        "Master-Detail Relationship": "Master-Detail Relationship",
+        "External Lookup Relationship": "External Lookup Relationship",
+        "Indirect Lookup Relationship": "Indirect Lookup Relationship",
+        "Hierarchy": "Hierarchy"
     }
     return salesforce_types.get(inferred_type, "Text")

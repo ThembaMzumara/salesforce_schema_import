@@ -6,7 +6,7 @@ from datetime import datetime
 from uuid import uuid4
 from infer_data_type import infer_data_type, match_salesforce_field_type
 from utils import validate_csv, create_output_dir
-from encoding_utils import detect_encoding, convert_to_utf8
+from encoding_utils import convert_to_utf8
 
 def generate_unique_filename(output_dir, base_name="output_data", extension=".json"):
     """Generate a unique filename to avoid file overriding."""
@@ -15,7 +15,7 @@ def generate_unique_filename(output_dir, base_name="output_data", extension=".js
     filename = f"{base_name}_{timestamp}_{unique_id}{extension}"
     return os.path.join(output_dir, filename)
 
-def process_csv(input_csv_path, output_dir):
+def process_csv(input_csv_path, output_dir, chunksize=10000):
     # Step 1: Validate CSV File
     if not validate_csv(input_csv_path):
         print(f"Error: The file {input_csv_path} is not a valid CSV.")
@@ -32,24 +32,21 @@ def process_csv(input_csv_path, output_dir):
         print(f"Failed to process encoding: {e}")
         sys.exit(1)
 
-    # Step 4: Read the CSV file into a DataFrame
+    # Step 4: Process CSV in chunks
+    output_data = {}
     try:
-        df = pd.read_csv(utf8_csv_path)
-        print(f"CSV Data Read Successfully! Here's a preview:")
-        print(df.head())  # Print first few rows to inspect the data
+        for chunk in pd.read_csv(utf8_csv_path, chunksize=chunksize, low_memory=False):
+            print(f"Processing chunk of size {len(chunk)} rows...")
+            for column in chunk.columns:
+                if column not in output_data:  # Infer type only once per column
+                    inferred_type = infer_data_type(chunk[column])
+                    salesforce_type = match_salesforce_field_type(inferred_type)
+                    output_data[column] = salesforce_type
     except Exception as e:
-        print(f"Error reading CSV file: {e}")
+        print(f"Error reading CSV file in chunks: {e}")
         sys.exit(1)
 
-    # Step 5: Infer Salesforce field type for each column
-    output_data = {}
-
-    for column in df.columns:
-        inferred_type = infer_data_type(df[column])
-        salesforce_type = match_salesforce_field_type(inferred_type)
-        output_data[column] = salesforce_type
-
-    # Step 6: Generate a unique filename and save the output JSON
+    # Step 5: Generate a unique filename and save the output JSON
     output_json_path = generate_unique_filename(output_dir)
 
     try:
