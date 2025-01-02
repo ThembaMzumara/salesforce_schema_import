@@ -8,8 +8,10 @@ from infer_data_type import infer_data_type, match_salesforce_field_type
 from utils import validate_csv, create_output_dir
 from encoding_utils import convert_to_utf8
 
-def generate_unique_filename(output_dir, base_name="output_data", extension=".json"):
-    """Generate a unique filename to avoid file overriding."""
+def generate_unique_filename(output_dir, input_csv_path, extension=".json"):
+    """Generate a unique filename by appending timestamp and UUID to the original file name."""
+    # Extract the base name (without extension) and append the timestamp and UUID
+    base_name = os.path.splitext(os.path.basename(input_csv_path))[0]
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     unique_id = uuid4().hex[:6]  # Short unique identifier
     filename = f"{base_name}_{timestamp}_{unique_id}{extension}"
@@ -47,7 +49,7 @@ def process_csv(input_csv_path, output_dir, chunksize=10000):
         sys.exit(1)
 
     # Step 5: Generate a unique filename and save the output JSON
-    output_json_path = generate_unique_filename(output_dir)
+    output_json_path = generate_unique_filename(output_dir, input_csv_path)
 
     try:
         with open(output_json_path, 'w') as json_file:
