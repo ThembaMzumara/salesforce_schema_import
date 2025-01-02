@@ -3,20 +3,24 @@ import datetime
 
 def infer_data_type(column_data):
     """Infer the data type of the column based on its content."""
-    # Check if all values are numeric
-    if column_data.apply(pd.to_numeric, errors='coerce').notna().all():
-        if column_data.apply(float.is_integer).all():
-            return "Number"
-        else:
-            return "Currency"
+    # Ensure all data is numeric where possible
+    numeric_data = pd.to_numeric(column_data, errors='coerce')
+
+    # Check if all values are integers
+    if numeric_data.dropna().apply(lambda x: x.is_integer() if isinstance(x, float) else False).all():
+        return "Number"
     
+    # Check if all values are floats
+    elif pd.api.types.is_float_dtype(numeric_data):
+        return "Currency"
+
     # Check if all values are dates
     try:
-        pd.to_datetime(column_data)
+        pd.to_datetime(column_data, errors='coerce')  # Validate date format
         return "Date/Time"
-    except:
+    except Exception:
         pass
-    
+
     # Check if all values are booleans
     if column_data.apply(lambda x: isinstance(x, bool)).all():
         return "Checkbox"
