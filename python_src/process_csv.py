@@ -47,16 +47,23 @@ def process_csv(input_csv_path, output_dir):
     # Step 4: Read the CSV file into a DataFrame (now in UTF-8)
     try:
         df = pd.read_csv(utf8_csv_path)
+        print(f"CSV Data Read Successfully! Here's a preview:")
+        print(df.head())  # Print first few rows to inspect the data
     except Exception as e:
         print(f"Error reading CSV file: {e}")
         sys.exit(1)
 
     # Step 5: Convert DataFrame to JSON
     try:
-        json_data = df.to_json(orient='records', lines=False)
+        # Create an empty JSON structure if the DataFrame is empty
+        if df.empty:
+            print(f"Warning: The DataFrame is empty. Creating an empty JSON file.")
+            json_data = json.dumps({col: [] for col in df.columns})  # Empty data for each column
+        else:
+            json_data = df.to_json(orient='records', lines=False)
 
         # Generate a unique output filename with timestamp
-        json_filename = generate_unique_filename(output_dir + "/output", ".json")
+        json_filename = generate_unique_filename(output_dir + "", ".json")
         
         with open(json_filename, 'w') as json_file:
             json.dump(json.loads(json_data), json_file, indent=4)
