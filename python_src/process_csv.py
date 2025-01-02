@@ -2,83 +2,50 @@ import pandas as pd
 import json
 import os
 import sys
-import chardet
-import time
+from infer_data_type import infer_data_type, match_salesforce_field_type
 from utils import validate_csv, create_output_dir
 
-def detect_encoding(file_path):
-    """Detect file encoding using chardet"""
-    with open(file_path, 'rb') as f:
-        raw_data = f.read()
-        result = chardet.detect(raw_data)
-        return result['encoding']
-
-def convert_to_utf8(file_path, output_path):
-    """Convert CSV file to UTF-8 encoding"""
-    detected_encoding = detect_encoding(file_path)
-    print(f"Detected encoding: {detected_encoding}")
-
-    # Read the file with the detected encoding and write it in UTF-8
-    with open(file_path, mode='r', encoding=detected_encoding) as infile:
-        with open(output_path, mode='w', encoding='utf-8', newline='') as outfile:
-            for line in infile:
-                outfile.write(line)
-    print(f"File converted to UTF-8 and saved as {output_path}")
-
-def generate_unique_filename(base_path, extension):
-    """Generate a unique filename based on the current timestamp"""
-    timestamp = time.strftime("%Y%m%d_%H%M%S")
-    base_name = os.path.splitext(os.path.basename(base_path))[0]
-    return os.path.join(os.path.dirname(base_path), f"{base_name}_{timestamp}{extension}")
-
-def process_csv(input_csv_path, output_dir):
+def process_csv(input_csv_path, output_json_path):
     # Step 1: Validate CSV File
     if not validate_csv(input_csv_path):
         print(f"Error: The file {input_csv_path} is not a valid CSV.")
         sys.exit(1)
 
     # Step 2: Create Output Directory if it doesn't exist
-    create_output_dir(output_dir)
+    create_output_dir(os.path.dirname(output_json_path))
 
-    # Step 3: Convert the CSV file to UTF-8 if needed
-    utf8_csv_path = os.path.join(output_dir, "utf8_" + os.path.basename(input_csv_path))
-    convert_to_utf8(input_csv_path, utf8_csv_path)
-
-    # Step 4: Read the CSV file into a DataFrame (now in UTF-8)
+    # Step 3: Read the CSV file into a DataFrame
     try:
-        df = pd.read_csv(utf8_csv_path)
+        df = pd.read_csv(input_csv_path)
         print(f"CSV Data Read Successfully! Here's a preview:")
         print(df.head())  # Print first few rows to inspect the data
     except Exception as e:
         print(f"Error reading CSV file: {e}")
         sys.exit(1)
 
-    # Step 5: Convert DataFrame to JSON
-    try:
-        # Create an empty JSON structure if the DataFrame is empty
-        if df.empty:
-            print(f"Warning: The DataFrame is empty. Creating an empty JSON file.")
-            json_data = json.dumps({col: [] for col in df.columns})  # Empty data for each column
-        else:
-            json_data = df.to_json(orient='records', lines=False)
+    # Step 4: Infer Salesforce field type for each column
+    output_data = {}
 
-        # Generate a unique output filename with timestamp
-        json_filename = generate_unique_filename(output_dir + "", ".json")
-        
-        with open(json_filename, 'w') as json_file:
-            json.dump(json.loads(json_data), json_file, indent=4)
-        
-        print(f"CSV has been successfully converted to JSON and saved to {json_filename}")
+    for column in df.columns:
+        inferred_type = infer_data_type(df[column])
+        salesforce_type = match_salesforce_field_type(inferred_type)
+        output_data[column] = salesforce_type
+
+    # Step 5: Create the output JSON file
+    try:
+        with open(output_json_path, 'w') as json_file:
+            json.dump(output_data, json_file, indent=4)
+        print(f"Salesforce data types successfully mapped and saved to {output_json_path}")
     except Exception as e:
-        print(f"Error during JSON conversion: {e}")
+        print(f"Error during JSON saving: {e}")
         sys.exit(1)
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print("Usage: python process_csv.py <input_csv_path> <output_directory>")
+        print("Usage: python process_csv.py <input_csv_path> <output_json_path>")
         sys.exit(1)
     
     input_csv = sys.argv[1]
-    output_dir = sys.argv[2]
+    output_json = sys.argv[2]
     
-    process_csv(input_csv, output_dir)
+    process_csv(input_csv, output_json)
