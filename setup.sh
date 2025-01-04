@@ -68,6 +68,9 @@ else
   print_success "✅ venv is available."
 fi
 
+# Change directory to python_src to set up the venv
+cd python_src
+
 # Create and activate a Python virtual environment (in venv directory)
 if [ ! -d "venv" ]; then
   print_success "Creating a Python virtual environment..."
@@ -85,9 +88,11 @@ pip3 install --upgrade pip  # Ensure pip is up-to-date
 pip3 install -r requirements.txt
 print_success "✅ Python dependencies installed."
 
-# Deactivate the virtual environment
-deactivate
-print_success "✅ Python virtual environment deactivated."
+# Do not deactivate the virtual environment here, leave it active
+# Python virtual environment remains activated after script execution
+
+# Change directory to project dir for TypeScript installation
+cd ..
 
 # Install Node.js dependencies
 print_success "Installing Node.js dependencies..."
