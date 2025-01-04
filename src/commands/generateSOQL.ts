@@ -50,32 +50,20 @@ export const generateSOQL = (jsonFile: string) => {
     // Start building the CREATE query for the object
     createQuery = `CREATE OBJECT ${objectName} (\n`;
 
-    // Next, iterate over the arrays after the object definition (starting with "Field API Name")
-    for (const objectKey in metadata) {
-      if (Object.prototype.hasOwnProperty.call(metadata, objectKey)) {
-        // Skip "OBJECT API NAME" and the main object array (e.g., "Account")
-        if (objectKey === "OBJECT API NAME" || objectKey === objectName) {
-          continue;
-        }
+    // Get the fields from the object
+    const fields = metadata[objectName]?.fields; // Access the "fields" array inside the object metadata
 
-        // Now, we have arrays like "Field API Name"
-        const fields = metadata[objectKey];
+    if (Array.isArray(fields)) {
+      // Iterate over the fields to generate the query
+      fields.forEach((field: any, index: number) => {
+        const fieldName = field.fieldName;
+        const fieldType = field.fieldType || "Text"; // Default to 'Text' if no fieldType is specified
 
-        // Ensure that 'fields' is an array before calling 'forEach'
-        if (Array.isArray(fields)) {
-          fields.forEach((field: any, index: number) => {
-            const fieldName = field.fieldName;
-            const fieldType = field.fieldType || "Text"; // Default to 'Text' if no fieldType is specified
-
-            // Add the field to the query
-            createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
-          });
-        } else {
-          console.warn(
-            `Skipping field generation for ${objectKey} as it's not an array.`,
-          );
-        }
-      }
+        // Add the field to the query
+        createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
+      });
+    } else {
+      console.warn("No fields found or fields are not in an array format.");
     }
 
     createQuery += `)\n`;

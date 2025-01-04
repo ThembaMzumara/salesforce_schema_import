@@ -21,7 +21,9 @@ def generate_unique_filename(output_dir, input_csv_path, extension=".json"):
     return os.path.join(output_dir, filename)
 
 
-def process_csv(input_csv_path, output_dir, chunksize=10000):
+def process_csv(
+    input_csv_path, output_dir, chunksize=500
+):  # Changed default chunksize to 500
     # Step 1: Validate CSV File
     if not validate_csv(input_csv_path):
         print(f"Error: The file {input_csv_path} is not a valid CSV.")
@@ -40,14 +42,23 @@ def process_csv(input_csv_path, output_dir, chunksize=10000):
 
     # Step 4: Process CSV in chunks
     output_data = {}
+    object_name = os.path.splitext(os.path.basename(input_csv_path))[
+        0
+    ].lower()  # Object name from file name
+    output_data[object_name] = {"objectName": object_name, "fields": []}
+
     try:
         for chunk in pd.read_csv(utf8_csv_path, chunksize=chunksize, low_memory=False):
             print(f"Processing chunk of size {len(chunk)} rows...")
             for column in chunk.columns:
-                if column not in output_data:  # Infer type only once per column
-                    inferred_type = infer_data_type(chunk[column])
-                    salesforce_type = match_salesforce_field_type(inferred_type)
-                    output_data[column] = salesforce_type
+                # Infer type for each column
+                inferred_type = infer_data_type(chunk[column])
+                salesforce_type = match_salesforce_field_type(inferred_type)
+
+                # Add column to fields under the object
+                output_data[object_name]["fields"].append(
+                    {"fieldName": column, "fieldType": salesforce_type}
+                )
     except Exception as e:
         print(f"Error reading CSV file in chunks: {e}")
         sys.exit(1)

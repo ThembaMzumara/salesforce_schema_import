@@ -41,6 +41,7 @@ const path = __importStar(require("path"));
  * @param jsonFile - The path to the JSON file containing the object and field metadata.
  */
 const generateSOQL = (jsonFile) => {
+    var _a;
     try {
         // Read the file content
         const data = fs.readFileSync(jsonFile, "utf-8");
@@ -78,28 +79,19 @@ const generateSOQL = (jsonFile) => {
         }
         // Start building the CREATE query for the object
         createQuery = `CREATE OBJECT ${objectName} (\n`;
-        // Next, iterate over the arrays after the object definition (starting with "Field API Name")
-        for (const objectKey in metadata) {
-            if (Object.prototype.hasOwnProperty.call(metadata, objectKey)) {
-                // Skip "OBJECT API NAME" and the main object array (e.g., "Account")
-                if (objectKey === "OBJECT API NAME" || objectKey === objectName) {
-                    continue;
-                }
-                // Now, we have arrays like "Field API Name"
-                const fields = metadata[objectKey];
-                // Ensure that 'fields' is an array before calling 'forEach'
-                if (Array.isArray(fields)) {
-                    fields.forEach((field, index) => {
-                        const fieldName = field.fieldName;
-                        const fieldType = field.fieldType || "Text"; // Default to 'Text' if no fieldType is specified
-                        // Add the field to the query
-                        createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
-                    });
-                }
-                else {
-                    console.warn(`Skipping field generation for ${objectKey} as it's not an array.`);
-                }
-            }
+        // Get the fields from the object
+        const fields = (_a = metadata[objectName]) === null || _a === void 0 ? void 0 : _a.fields; // Access the "fields" array inside the object metadata
+        if (Array.isArray(fields)) {
+            // Iterate over the fields to generate the query
+            fields.forEach((field, index) => {
+                const fieldName = field.fieldName;
+                const fieldType = field.fieldType || "Text"; // Default to 'Text' if no fieldType is specified
+                // Add the field to the query
+                createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
+            });
+        }
+        else {
+            console.warn("No fields found or fields are not in an array format.");
         }
         createQuery += `)\n`;
         // Write the query to the output file
