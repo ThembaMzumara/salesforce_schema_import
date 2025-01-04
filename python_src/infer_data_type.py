@@ -1,6 +1,7 @@
-import pandas as pd
 import datetime
 import re
+
+import pandas as pd
 
 # Regex patterns for Salesforce data types
 regex_patterns = {
@@ -22,27 +23,34 @@ regex_patterns = {
     "Percent": r"^\d{1,2}(\.\d{1,2})?%$",  # Matches percent format
 }
 
+
 def infer_data_type(column_data):
     """Infer the data type of the column based on its content."""
     # Ensure all data is numeric where possible
-    numeric_data = pd.to_numeric(column_data, errors='coerce')
+    numeric_data = pd.to_numeric(column_data, errors="coerce")
 
     # Check against regex patterns for known data types
     for field_type, pattern in regex_patterns.items():
-        if column_data.apply(lambda x: isinstance(x, str) and re.match(pattern, str(x))).any():
+        if column_data.apply(
+            lambda x: isinstance(x, str) and re.match(pattern, str(x))
+        ).any():
             return field_type
 
     # Check if all values are integers
-    if numeric_data.dropna().apply(lambda x: x.is_integer() if isinstance(x, float) else False).all():
+    if (
+        numeric_data.dropna()
+        .apply(lambda x: x.is_integer() if isinstance(x, float) else False)
+        .all()
+    ):
         return "Number"
-    
+
     # Check if all values are floats
     elif pd.api.types.is_float_dtype(numeric_data):
         return "Currency"
 
     # Check if all values are dates
     try:
-        pd.to_datetime(column_data, errors='coerce')  # Validate date format
+        pd.to_datetime(column_data, errors="coerce")  # Validate date format
         return "Date/Time"
     except Exception:
         pass
@@ -50,13 +58,14 @@ def infer_data_type(column_data):
     # Check if all values are booleans
     if column_data.apply(lambda x: isinstance(x, bool)).all():
         return "Checkbox"
-    
+
     # Check if any value in the column is a picklist (text)
     if column_data.apply(lambda x: isinstance(x, str)).any():
         return "Picklist"
-    
+
     # Default to Text
     return "Text"
+
 
 def match_salesforce_field_type(inferred_type):
     """Map inferred data types to Salesforce field types."""
@@ -84,6 +93,6 @@ def match_salesforce_field_type(inferred_type):
         "Master-Detail Relationship": "Master-Detail Relationship",
         "External Lookup Relationship": "External Lookup Relationship",
         "Indirect Lookup Relationship": "Indirect Lookup Relationship",
-        "Hierarchy": "Hierarchy"
+        "Hierarchy": "Hierarchy",
     }
     return salesforce_types.get(inferred_type, "Text")

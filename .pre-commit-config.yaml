@@ -1,0 +1,55 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        language_version: python3.12 # Set the Python version explicitly
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+# Documentation and Comments
+# This configuration file is for pre-commit hooks, which are scripts that run automatically
+# before a commit is made in a version control system (like Git). The purpose of these hooks
+# is to catch common issues and enforce coding standards, ensuring that the codebase remains
+# clean and consistent.
+
+# The 'repos' section lists the repositories that contain the hooks to be used. Each repository
+# is specified with its URL and a specific revision (rev) that indicates the version of the hooks
+# to be used.
+
+# The first repository is 'pre-commit-hooks', which includes several useful hooks:
+# - 'trailing-whitespace': This hook removes any whitespace characters at the end of each line
+#   in the files being committed, which helps maintain a clean codebase.
+# - 'end-of-file-fixer': This hook ensures that files end with a newline character, which is a
+#   common convention in many programming languages.
+# - 'check-yaml': This hook checks YAML files for syntax errors, ensuring that configuration
+#   files are valid before they are committed.
+
+# The second repository is 'psf/black', which is a code formatter for Python. The 'black' hook
+# automatically formats Python code to conform to the Black style guide, promoting consistency
+# in code formatting.
+
+# The third repository is 'mirrors-isort', which is a Python utility for sorting imports. The
+# 'isort' hook organizes imports in Python files, making them easier to read and maintain.
+
+# The fourth repository is 'mirrors-prettier', which is a code formatter for various languages
+# (including JavaScript, TypeScript, and more). The 'prettier' hook formats code according to
+# Prettier's rules, ensuring a consistent style across the codebase.
+
+# Overall, this configuration file helps automate code quality checks and formatting,
+# improving the development workflow and reducing the likelihood of errors being introduced
+# into the codebase.

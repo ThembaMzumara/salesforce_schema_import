@@ -6,7 +6,7 @@ export const generateCLI = (metadata: any) => {
     "Field API Name": "-n",
     "Field Label": "-l",
     "Help Text": "-d",
-    "Length": "--length",
+    Length: "--length",
     "Is Required on Create": "--required",
   };
 

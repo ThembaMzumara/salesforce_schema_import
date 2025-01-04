@@ -1,12 +1,15 @@
-import pandas as pd
 import json
 import os
 import sys
 from datetime import datetime
 from uuid import uuid4
-from infer_data_type import infer_data_type, match_salesforce_field_type
-from utils import validate_csv, create_output_dir
+
+import pandas as pd
 from encoding_utils import convert_to_utf8
+from infer_data_type import infer_data_type, match_salesforce_field_type
+
+from utils import create_output_dir, validate_csv
+
 
 def generate_unique_filename(output_dir, input_csv_path, extension=".json"):
     """Generate a unique filename by appending timestamp and UUID to the original file name."""
@@ -16,6 +19,7 @@ def generate_unique_filename(output_dir, input_csv_path, extension=".json"):
     unique_id = uuid4().hex[:6]  # Short unique identifier
     filename = f"{base_name}_{timestamp}_{unique_id}{extension}"
     return os.path.join(output_dir, filename)
+
 
 def process_csv(input_csv_path, output_dir, chunksize=10000):
     # Step 1: Validate CSV File
@@ -52,14 +56,17 @@ def process_csv(input_csv_path, output_dir, chunksize=10000):
     output_json_path = generate_unique_filename(output_dir, input_csv_path)
 
     try:
-        with open(output_json_path, 'w') as json_file:
+        with open(output_json_path, "w") as json_file:
             json.dump(output_data, json_file, indent=4)
-        print(f"Salesforce data types successfully mapped and saved to {output_json_path}")
+        print(
+            f"Salesforce data types successfully mapped and saved to {output_json_path}"
+        )
     except Exception as e:
         print(f"Error during JSON saving: {e}")
         sys.exit(1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("Usage: python process_csv.py <input_csv_path> <output_directory>")
         sys.exit(1)
