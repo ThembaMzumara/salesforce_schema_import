@@ -81,13 +81,20 @@ const generateSOQL = (jsonFile) => {
         createQuery = `CREATE OBJECT ${objectName} (\n`;
         // Get the fields from the object
         const fields = (_a = metadata[objectName]) === null || _a === void 0 ? void 0 : _a.fields; // Access the "fields" array inside the object metadata
+        // Create a Set to track added fields and avoid duplicates
+        const addedFields = new Set();
         if (Array.isArray(fields)) {
             // Iterate over the fields to generate the query
             fields.forEach((field, index) => {
                 const fieldName = field.fieldName;
                 const fieldType = field.fieldType || "Text"; // Default to 'Text' if no fieldType is specified
-                // Add the field to the query
-                createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
+                // Check if the field has already been added to avoid duplicates
+                if (!addedFields.has(fieldName)) {
+                    // Add the field to the query
+                    createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
+                    // Mark this field as added
+                    addedFields.add(fieldName);
+                }
             });
         }
         else {
