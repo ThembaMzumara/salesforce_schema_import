@@ -78,12 +78,13 @@ function runPythonScriptWithVenv(scriptPath, inputCsv) {
 commander_1.program
     .name('ssm')
     .description('CLI tool to migrate Salesforce schema metadata and data')
-    .version('1.0.0');
+    .version('1.0.0')
+    .usage('[options] [command]');
 // Command to import metadata from CSV to JSON
 commander_1.program
     .command('import-metadata')
-    .description('Import metadata from a CSV file')
-    .argument('<csvFile>', 'CSV file with Salesforce metadata')
+    .description('Import metadata from a CSV file and process it into a structured format')
+    .argument('<csvFile>', 'Path to the CSV file containing Salesforce metadata')
     .action((csvFile) => {
     try {
         const scriptPath = path.resolve('./python_src/process_csv.py');
@@ -96,8 +97,8 @@ commander_1.program
 // Command to generate SOQL queries from JSON
 commander_1.program
     .command('generate-soql')
-    .description('Generate SOQL queries from metadata JSON')
-    .argument('<jsonFile>', 'JSON file with parsed metadata')
+    .description('Generate Salesforce Object Query Language (SOQL) queries based on provided metadata JSON')
+    .argument('<jsonFile>', 'Path to the JSON file containing parsed metadata')
     .action((jsonFile) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, generateSOQL_1.generateSOQL)(jsonFile);
@@ -109,8 +110,8 @@ commander_1.program
 // Command to generate Salesforce CLI commands for creating objects/fields
 commander_1.program
     .command('generate-cli')
-    .description('Generate Salesforce CLI commands from metadata JSON')
-    .argument('<jsonFile>', 'JSON file with parsed metadata')
+    .description('Generate Salesforce CLI commands based on metadata JSON for schema migration')
+    .argument('<jsonFile>', 'Path to the JSON file containing parsed metadata')
     .action((jsonFile) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, generateCLICommands_1.generateCLICommands)(jsonFile);
@@ -119,4 +120,24 @@ commander_1.program
         console.error('❌ Error generating CLI commands:', error);
     }
 }));
+commander_1.program.on('option:help', () => {
+    console.log(`
+CLI Tool for Salesforce Schema Migration and Management
+
+Usage:
+    ssm [options] [command]
+
+Options:
+    -V, --version              Show the version number
+    -h, --help                 Display help information for the tool or command
+
+Commands:
+    import-metadata <csvFile>  Import metadata from a CSV file and process it into a structured format
+    generate-soql <jsonFile>   Generate SOQL queries based on provided metadata JSON
+    generate-cli <jsonFile>    Generate Salesforce CLI commands for schema migration from metadata JSON
+
+For detailed help on any specific command, use:
+    ssm <command> --help
+  `);
+});
 commander_1.program.parse(process.argv);
