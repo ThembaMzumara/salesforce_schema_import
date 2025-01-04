@@ -49,12 +49,15 @@ const generateSOQL_1 = require("./commands/generateSOQL");
 const generateCLICommands_1 = require("./commands/generateCLICommands");
 const path = __importStar(require("path"));
 // Function to run a Python script within a virtual environment
-function runPythonScriptWithVenv(scriptPath, args) {
+function runPythonScriptWithVenv(scriptPath, inputCsv) {
     try {
-        // Escape each argument for safe shell execution
-        const sanitizedArgs = args.map(arg => `"${arg.replace(/(["$`\\])/g, '\\$1')}"`).join(' ');
-        // Use bash to activate the venv and run the script
-        const venvActivateCommand = `bash -c "source ${path.resolve('./python_src/venv/bin/activate')} && python3 ${scriptPath} ${sanitizedArgs}"`;
+        // Hardcode the output directory
+        const outputDir = 'csv_files/output_data';
+        // Escape the input CSV argument for safe shell execution
+        const sanitizedInputCsv = `"${inputCsv.replace(/(["$`\\])/g, '\\$1')}"`;
+        // Define the venv activation and script execution command with hardcoded output directory
+        const venvActivateCommand = `bash -c "source ${path.resolve('./python_src/venv/bin/activate')} && python3 ${scriptPath} ${sanitizedInputCsv} ${outputDir}"`;
+        // Execute the command using spawnSync
         const result = (0, child_process_1.spawnSync)(venvActivateCommand, {
             shell: true,
             stdio: 'inherit', // Forward output to terminal
@@ -83,9 +86,8 @@ commander_1.program
     .argument('<csvFile>', 'CSV file with Salesforce metadata')
     .action((csvFile) => {
     try {
-        const outputDir = './csv_files/'; // Output directory for processed files
         const scriptPath = path.resolve('./python_src/process_csv.py');
-        runPythonScriptWithVenv(scriptPath, [csvFile, outputDir]);
+        runPythonScriptWithVenv(scriptPath, csvFile);
     }
     catch (error) {
         console.error('❌ Error importing metadata:', error);
