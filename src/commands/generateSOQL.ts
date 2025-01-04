@@ -20,7 +20,7 @@ export const generateSOQL = (jsonFile: string) => {
     }
 
     // Prepare the output directory and file name
-    const outputDir = "./csv_files/output";
+    const outputDir = "./csv_files/soql_output";
     const outputFilePath = path.join(outputDir, "create_queries.soql");
 
     // Ensure the output directory exists
@@ -61,14 +61,20 @@ export const generateSOQL = (jsonFile: string) => {
         // Now, we have arrays like "Field API Name"
         const fields = metadata[objectKey];
 
-        // Loop through each field in the array and add it to the CREATE query
-        fields.forEach((field: any, index: number) => {
-          const fieldName = field.fieldName;
-          const fieldType = field.fieldType || "Text"; // Default to 'Text' if no fieldType is specified
+        // Ensure that 'fields' is an array before calling 'forEach'
+        if (Array.isArray(fields)) {
+          fields.forEach((field: any, index: number) => {
+            const fieldName = field.fieldName;
+            const fieldType = field.fieldType || "Text"; // Default to 'Text' if no fieldType is specified
 
-          // Add the field to the query
-          createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
-        });
+            // Add the field to the query
+            createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
+          });
+        } else {
+          console.warn(
+            `Skipping field generation for ${objectKey} as it's not an array.`,
+          );
+        }
       }
     }
 

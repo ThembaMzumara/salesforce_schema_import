@@ -43,37 +43,37 @@ const path = __importStar(require("path"));
 const generateSOQL = (jsonFile) => {
     try {
         // Read the file content
-        const data = fs.readFileSync(jsonFile, 'utf-8');
+        const data = fs.readFileSync(jsonFile, "utf-8");
         // Parse the JSON data
         let metadata;
         try {
             metadata = JSON.parse(data);
         }
         catch (error) {
-            console.error('Failed to parse JSON. File content:', data);
+            console.error("Failed to parse JSON. File content:", data);
             throw error; // Exit if the file content isn't valid JSON
         }
         // Prepare the output directory and file name
-        const outputDir = './csv_files/output';
-        const outputFilePath = path.join(outputDir, 'create_queries.soql');
+        const outputDir = "./csv_files/soql_output";
+        const outputFilePath = path.join(outputDir, "create_queries.soql");
         // Ensure the output directory exists
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
         }
         // Start building the CREATE query
-        let createQuery = '';
+        let createQuery = "";
         // First, get the object name (e.g., "Account")
-        let objectName = '';
+        let objectName = "";
         for (const objectKey in metadata) {
             if (Object.prototype.hasOwnProperty.call(metadata, objectKey)) {
-                if (objectKey !== 'OBJECT API NAME') {
+                if (objectKey !== "OBJECT API NAME") {
                     objectName = objectKey; // The object name is found here
                     break;
                 }
             }
         }
         if (!objectName) {
-            console.error('No object name found!');
+            console.error("No object name found!");
             return;
         }
         // Start building the CREATE query for the object
@@ -82,27 +82,32 @@ const generateSOQL = (jsonFile) => {
         for (const objectKey in metadata) {
             if (Object.prototype.hasOwnProperty.call(metadata, objectKey)) {
                 // Skip "OBJECT API NAME" and the main object array (e.g., "Account")
-                if (objectKey === 'OBJECT API NAME' || objectKey === objectName) {
+                if (objectKey === "OBJECT API NAME" || objectKey === objectName) {
                     continue;
                 }
                 // Now, we have arrays like "Field API Name"
                 const fields = metadata[objectKey];
-                // Loop through each field in the array and add it to the CREATE query
-                fields.forEach((field, index) => {
-                    const fieldName = field.fieldName;
-                    const fieldType = field.fieldType || 'Text'; // Default to 'Text' if no fieldType is specified
-                    // Add the field to the query
-                    createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? ',' : ''}\n`;
-                });
+                // Ensure that 'fields' is an array before calling 'forEach'
+                if (Array.isArray(fields)) {
+                    fields.forEach((field, index) => {
+                        const fieldName = field.fieldName;
+                        const fieldType = field.fieldType || "Text"; // Default to 'Text' if no fieldType is specified
+                        // Add the field to the query
+                        createQuery += `  ${fieldName}: ${fieldType}${index < fields.length - 1 ? "," : ""}\n`;
+                    });
+                }
+                else {
+                    console.warn(`Skipping field generation for ${objectKey} as it's not an array.`);
+                }
             }
         }
         createQuery += `)\n`;
         // Write the query to the output file
-        fs.writeFileSync(outputFilePath, createQuery, 'utf-8');
+        fs.writeFileSync(outputFilePath, createQuery, "utf-8");
         console.log(`CREATE SOQL query has been written to: ${outputFilePath}`);
     }
     catch (error) {
-        console.error('Error generating CREATE SOQL:', error);
+        console.error("Error generating CREATE SOQL:", error);
     }
 };
 exports.generateSOQL = generateSOQL;

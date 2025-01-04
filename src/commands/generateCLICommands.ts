@@ -18,11 +18,23 @@ export const generateCLICommands = (jsonFile: string) => {
       return;
     }
 
-    // Generate CLI commands
-    const cliCommands = generateCLI(metadata);
+    // Ensure that metadata[objectName] is an array
+    let cliCommands: string[] = [];
+    for (const objectName in metadata) {
+      if (Object.prototype.hasOwnProperty.call(metadata, objectName)) {
+        const objectMetadata = metadata[objectName];
+
+        // Check if the objectMetadata is an array before calling forEach
+        if (Array.isArray(objectMetadata)) {
+          cliCommands = generateCLI(objectMetadata);
+        } else {
+          console.warn(`Skipping ${objectName} as it is not an array.`);
+        }
+      }
+    }
 
     // Ensure output directory exists
-    const outputDir = "./csv_files/output/";
+    const outputDir = "./csv_files/cli_output/";
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }

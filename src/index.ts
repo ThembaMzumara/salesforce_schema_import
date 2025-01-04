@@ -8,7 +8,7 @@ import * as path from "path";
 function runPythonScriptWithVenv(scriptPath: string, inputCsv: string) {
   try {
     // Hardcode the output directory
-    const outputDir = "csv_files/output_data";
+    const outputDir = "csv_files/csv_output";
 
     // Escape the input CSV argument for safe shell execution
     const sanitizedInputCsv = `"${inputCsv.replace(/(["$`\\])/g, "\\$1")}"`;

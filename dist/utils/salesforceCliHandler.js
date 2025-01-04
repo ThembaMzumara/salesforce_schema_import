@@ -8,7 +8,7 @@ const generateCLI = (metadata) => {
         "Field API Name": "-n",
         "Field Label": "-l",
         "Help Text": "-d",
-        "Length": "--length",
+        Length: "--length",
         "Is Required on Create": "--required",
     };
     for (const objectName in metadata) {

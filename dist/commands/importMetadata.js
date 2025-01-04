@@ -47,12 +47,12 @@ const path_1 = __importDefault(require("path"));
 const importMetadata = (csvFile) => {
     try {
         const jsonData = (0, metadataParser_1.parseCSV)(csvFile);
-        const jsonFilePath = `./csv_files/output/${path_1.default.basename(csvFile, '.csv')}.json`;
+        const jsonFilePath = `./csv_files/output/${path_1.default.basename(csvFile, ".csv")}.json`;
         fs.writeFileSync(jsonFilePath, JSON.stringify(jsonData, null, 2));
         console.log(`Metadata successfully imported to ${jsonFilePath}`);
     }
     catch (error) {
-        console.error('Error importing metadata:', error);
+        console.error("Error importing metadata:", error);
     }
 };
 exports.importMetadata = importMetadata;
