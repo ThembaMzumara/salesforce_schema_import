@@ -1,6 +1,11 @@
 import * as fs from "fs";
-import { generateCLI } from "../utils/salesforceCliHandler";
 import * as path from "path";
+import { generateCLI } from "../utils/salesforceCliHandler";
+
+interface CLIObject {
+  fieldName: string;
+  fieldType: string;
+}
 
 export const generateCLICommands = (jsonFile: string) => {
   try {
@@ -18,19 +23,41 @@ export const generateCLICommands = (jsonFile: string) => {
       return;
     }
 
-    // Ensure that metadata[objectName] is an array
+    // Convert metadata to array format for the CLI generation
     let cliCommands: string[] = [];
+    let objects: CLIObject[] = [];
+
+    // Ensure metadata is structured as expected
     for (const objectName in metadata) {
       if (Object.prototype.hasOwnProperty.call(metadata, objectName)) {
         const objectMetadata = metadata[objectName];
 
-        // Check if the objectMetadata is an array before calling forEach
-        if (Array.isArray(objectMetadata)) {
-          cliCommands = generateCLI(objectMetadata);
+        // Ensure objectMetadata is an object and has a 'fields' array
+        if (
+          objectMetadata &&
+          objectMetadata.fields &&
+          Array.isArray(objectMetadata.fields)
+        ) {
+          // Create an array with field name and type objects
+          objectMetadata.fields.forEach((field: any) => {
+            objects.push({
+              fieldName: field.fieldName,
+              fieldType: field.fieldType || "Text", // Default to 'Text' if fieldType is missing
+            });
+          });
         } else {
-          console.warn(`Skipping ${objectName} as it is not an array.`);
+          console.warn(
+            `Skipping ${objectName} as it does not have valid fields.`,
+          );
         }
       }
+    }
+
+    // Ensure the array has content before passing to generateCLI
+    if (objects.length > 0) {
+      cliCommands = generateCLI(objects);
+    } else {
+      console.warn("No valid fields to generate CLI commands.");
     }
 
     // Ensure output directory exists

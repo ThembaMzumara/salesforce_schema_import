@@ -27,21 +27,29 @@ class EnhancedSalesforceValidator:
     def __init__(self):
         # Updated regex patterns with proper anchoring
         self.patterns = {
-            "Auto Number": r"(?i)^[A-Za-z0-9\-]+$",
-            "Checkbox": r"(?i)^(true|false|1|0|yes|no|y|n)$",
-            "Currency": r"^[-+]?\$?\d{1,3}(?:,\d{3})*(?:\.\d{2})?$",
-            "Date": r"^\d{4}[-/](0[1-9]|1[0-2])[-/](0[1-9]|[12]\d|3[01])$",
-            "Date/Time": r"^\d{4}[-/](0[1-9]|1[0-2])[-/](0[1-9]|[12]\d|3[01])(?:[T ]\d{2}:\d{2}:\d{2}(?:\.\d{3})?(?:Z|[-+]\d{2}:?\d{2})?)?$",
+            "Auto Number": r"^[A-Za-z0-9\-]+$",
+            "Formula": None,  # Depends on formula definition
+            "Roll-Up Summary": None,  # Depends on summary type
+            "Lookup Relationship": r"^[A-Za-z0-9]{15,18}$",  # Salesforce ID pattern
+            "External Lookup Relationship": r"^[A-Za-z0-9\-_]+$",
+            "Checkbox": r"^(true|false|1|0)$",
+            "Currency": r"^\-?\$?\d{1,3}(,\d{3})*(\.\d{1,2})?$",
+            "Date": r"^\d{4}-\d{2}-\d{2}$",  # ISO format
+            "Date/Time": r"^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}(\.\d{3})?([+-]\d{2}:?\d{2}|Z)?$",
             "Email": r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-            "Geolocation": r"^(-?\d+\.?\d*),\s*(-?\d+\.?\d*)$",
-            "Number": r"^[-+]?\d*\.?\d+$",
-            "Percent": r"^[-+]?\d*\.?\d+%?$",
-            "Phone": r"^\+?[0-9()\-\s\.]+$",
-            "Text": r"^[\s\S]{0,255}$",
+            "Geolocation": r"^\-?\d+(\.\d+)?,\-?\d+(\.\d+)?$",
+            "Number": r"^\-?\d+(\.\d+)?$",
+            "Percent": r"^\-?\d+(\.\d+)?%?$",
+            "Phone": r"^\+?[\d\-\(\)\s\.]+$",
+            "Picklist": r"^(Value1|Value2|Value3)$",  # Example values for picklist
+            "Picklist (Multi-Select)": r"^(Value1|Value2|Value3)(,(Value1|Value2|Value3))*$",  # Example values for multi-select
+            "Text": r"^.{0,255}$",
             "Text Area": r"^[\s\S]{0,255}$",
             "Text Area (Long)": r"^[\s\S]{0,131072}$",
-            "Text Area (Rich)": r"^[\s\S]*$",
-            "URL": r"^https?://.+$",
+            "Text Area (Rich)": r"^[\s\S]{0,131072}$",
+            "Text (Encrypted)": r"^.+$",
+            "Time": r"^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9](\.\d{1,3})?)?$",
+            "URL": r"^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$",
         }
 
     def analyze_field(self, field_name: str, data: pd.Series) -> FieldAnalysis:
