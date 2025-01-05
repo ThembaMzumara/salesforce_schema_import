@@ -1,98 +1,197 @@
 import datetime
 import re
+from dataclasses import dataclass
+from typing import Dict, List, Optional, Tuple, Union
 
+import numpy as np
 import pandas as pd
 
-# Regex patterns for Salesforce data types
-regex_patterns = {
-    "Number": r"^-?\d+(\.\d+)?$",  # Matches integers and decimals
-    "Currency": r"^\$?\d+(\.\d{1,2})?$",  # Matches currency format
-    "Date": r"^\d{4}-\d{2}-\d{2}$",  # Matches date format YYYY-MM-DD
-    "Date/Time": r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$",  # Matches date-time format
-    "Email": r"^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$",  # Matches email format
-    "Phone": r"^\+?\(?\d{1,4}\)?[\s\-]?\(?\d{1,4}\)?[\s\-]?\(?\d{1,4}\)?[\s\-]?\(?\d{1,4}\)?$",  # Matches phone format
-    "URL": r"^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$",  # Matches URL format
-    "Checkbox": r"^(true|false)$",  # Matches boolean values
-    "Picklist": r"^[\w\s\-]+$",  # Matches a single option with alphanumeric characters, spaces, and hyphens.  # Example Picklist (replace with your options)
-    "Picklist (Multi-select)": r"^((Red|Blue|Green|Yellow);)*$",  # Example Multi-select (replace with your options)
-    "Text Area": r"^.{1,255}$",  # Matches text with max 255 characters
-    "Text Area (Long)": r"^.{1,131072}$",  # Matches long text up to 131072 characters
-    "Text Area (Rich)": r"<[^>]+>",  # Matches rich text with HTML tags
-    "Geolocation": r"\((-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)\)",  # Matches geolocation in (lat, lon)
-    "Auto Number": r"^[A-Za-z]{3}-\d{4}$",  # Matches Auto Number format
-    "Percent": r"^\d{1,2}(\.\d{1,2})?%$",  # Matches percent format
-}
+
+@dataclass
+class FieldAnalysis:
+    """Data class to store field analysis results"""
+
+    field_name: str
+    suggested_type: str
+    confidence: float
+    pattern: str
+    sample_values: List[str]
+    unique_ratio: float
+    null_ratio: float
+    validation_pattern: str
 
 
-def infer_data_type(column_data):
-    """Infer the data type of the column based on its content."""
-    # Ensure all data is numeric where possible
-    numeric_data = pd.to_numeric(column_data, errors="coerce")
+class EnhancedSalesforceValidator:
+    """Enhanced Salesforce data type validator with modern pattern matching and analysis"""
 
-    # Check against regex patterns for known data types
-    for field_type, pattern in regex_patterns.items():
-        if column_data.apply(
-            lambda x: isinstance(x, str) and re.match(pattern, str(x))
-        ).any():
-            return field_type
+    def __init__(self):
+        # Updated regex patterns with proper anchoring
+        self.patterns = {
+            "Auto Number": r"(?i)^[A-Za-z0-9\-]+$",
+            "Checkbox": r"(?i)^(true|false|1|0|yes|no|y|n)$",
+            "Currency": r"^[-+]?\$?\d{1,3}(?:,\d{3})*(?:\.\d{2})?$",
+            "Date": r"^\d{4}[-/](0[1-9]|1[0-2])[-/](0[1-9]|[12]\d|3[01])$",
+            "Date/Time": r"^\d{4}[-/](0[1-9]|1[0-2])[-/](0[1-9]|[12]\d|3[01])(?:[T ]\d{2}:\d{2}:\d{2}(?:\.\d{3})?(?:Z|[-+]\d{2}:?\d{2})?)?$",
+            "Email": r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+            "Geolocation": r"^(-?\d+\.?\d*),\s*(-?\d+\.?\d*)$",
+            "Number": r"^[-+]?\d*\.?\d+$",
+            "Percent": r"^[-+]?\d*\.?\d+%?$",
+            "Phone": r"^\+?[0-9()\-\s\.]+$",
+            "Text": r"^[\s\S]{0,255}$",
+            "Text Area": r"^[\s\S]{0,255}$",
+            "Text Area (Long)": r"^[\s\S]{0,131072}$",
+            "Text Area (Rich)": r"^[\s\S]*$",
+            "URL": r"^https?://.+$",
+        }
 
-    # Check if all values are integers
-    if (
-        numeric_data.dropna()
-        .apply(lambda x: x.is_integer() if isinstance(x, float) else False)
-        .all()
-    ):
-        return "Number"
+    def analyze_field(self, field_name: str, data: pd.Series) -> FieldAnalysis:
+        """Analyze a field and determine its likely Salesforce data type"""
+        # Handle empty series
+        if len(data) == 0:
+            return FieldAnalysis(
+                field_name=field_name,
+                suggested_type="Text",
+                confidence=0.0,
+                pattern="",
+                sample_values=[],
+                unique_ratio=0.0,
+                null_ratio=1.0,
+                validation_pattern=self.patterns["Text"],
+            )
 
-    # Check if all values are floats
-    elif pd.api.types.is_float_dtype(numeric_data):
-        return "Currency"
+        # Clean data
+        clean_data = data.astype(str).replace({"nan": None, "None": None, "NaN": None})
+        non_null_mask = clean_data.notna()
+        non_null_values = clean_data[non_null_mask]
 
-    # Check if all values are dates
-    try:
-        pd.to_datetime(column_data, errors="coerce")  # Validate date format
-        return "Date/Time"
-    except Exception:
-        pass
+        # Calculate basic statistics
+        total_values = len(data)
+        null_ratio = (
+            1 - (len(non_null_values) / total_values) if total_values > 0 else 1.0
+        )
+        unique_ratio = (
+            len(non_null_values.unique()) / len(non_null_values)
+            if len(non_null_values) > 0
+            else 0.0
+        )
 
-    # Check if all values are booleans
-    if column_data.apply(lambda x: isinstance(x, bool)).all():
-        return "Checkbox"
+        # If all values are null, return Text type
+        if len(non_null_values) == 0:
+            return FieldAnalysis(
+                field_name=field_name,
+                suggested_type="Text",
+                confidence=1.0,
+                pattern="",
+                sample_values=[],
+                unique_ratio=0.0,
+                null_ratio=1.0,
+                validation_pattern=self.patterns["Text"],
+            )
 
-    # Check if any value in the column is a picklist (text)
-    if column_data.apply(lambda x: isinstance(x, str)).any():
-        return "Picklist"
+        # Test patterns and calculate scores
+        type_scores = []
+        for type_name, pattern in self.patterns.items():
+            try:
+                # Count pattern matches for non-null values
+                matches = non_null_values.str.match(pattern, na=False)
+                match_ratio = matches.mean() if len(matches) > 0 else 0.0
 
-    # Default to Text
-    return "Text"
+                # Add type-specific scoring adjustments
+                score = match_ratio
+
+                # Adjust scores based on field characteristics
+                if (
+                    type_name == "Number"
+                    and pd.to_numeric(non_null_values, errors="coerce").notna().mean()
+                    > 0.8
+                ):
+                    score += 0.2
+                elif (
+                    type_name == "Date"
+                    and pd.to_datetime(non_null_values, errors="coerce").notna().mean()
+                    > 0.8
+                ):
+                    score += 0.2
+                elif type_name == "Checkbox" and set(
+                    non_null_values.str.lower()
+                ).issubset({"true", "false", "1", "0", "yes", "no"}):
+                    score += 0.3
+                elif type_name == "Text Area" and non_null_values.str.len().max() > 255:
+                    score += 0.3
+
+                type_scores.append((type_name, score))
+            except Exception as e:
+                continue
+
+        # Select best match
+        if not type_scores:
+            # Default to Text if no patterns match
+            best_type = "Text"
+            confidence = 1.0
+        else:
+            best_type, confidence = max(type_scores, key=lambda x: x[1])
+
+        return FieldAnalysis(
+            field_name=field_name,
+            suggested_type=best_type,
+            confidence=confidence,
+            pattern=self.patterns[best_type],
+            sample_values=non_null_values.head(5).tolist(),
+            unique_ratio=unique_ratio,
+            null_ratio=null_ratio,
+            validation_pattern=self.patterns[best_type],
+        )
 
 
-def match_salesforce_field_type(inferred_type):
-    """Map inferred data types to Salesforce field types."""
-    salesforce_types = {
-        "Number": "Number",
-        "Currency": "Currency",
-        "Date": "Date",
-        "Date/Time": "Date/Time",
-        "Checkbox": "Checkbox",
-        "URL": "URL",
-        "Email": "Email",
-        "Phone": "Phone",
-        "Picklist": "Picklist",
-        "Picklist (Multi-select)": "Picklist (Multi-select)",
-        "Text": "Text",
-        "Text Area": "Text Area",
-        "Text Area (Long)": "Text Area (Long)",
-        "Text Area (Rich)": "Text Area (Rich)",
-        "Auto Number": "Auto Number",
-        "Percent": "Percent",
-        "Geolocation": "Geolocation",
-        "Formula": "Formula",
-        "Roll-Up Summary": "Roll-Up Summary",
-        "Lookup Relationship": "Lookup Relationship",
-        "Master-Detail Relationship": "Master-Detail Relationship",
-        "External Lookup Relationship": "External Lookup Relationship",
-        "Indirect Lookup Relationship": "Indirect Lookup Relationship",
-        "Hierarchy": "Hierarchy",
-    }
-    return salesforce_types.get(inferred_type, "Text")
+def analyze_dataframe(df: pd.DataFrame) -> Dict[str, FieldAnalysis]:
+    """Analyze all fields in a dataframe and return their Salesforce data types"""
+    validator = EnhancedSalesforceValidator()
+    results = {}
+
+    for column in df.columns:
+        try:
+            results[column] = validator.analyze_field(column, df[column])
+        except Exception as e:
+            print(f"Error analyzing column {column}: {str(e)}")
+            # Provide a default Text analysis for failed columns
+            results[column] = FieldAnalysis(
+                field_name=column,
+                suggested_type="Text",
+                confidence=0.0,
+                pattern="",
+                sample_values=[],
+                unique_ratio=0.0,
+                null_ratio=1.0,
+                validation_pattern=r"^[\s\S]{0,255}$",
+            )
+
+    return results
+
+
+def generate_field_mapping_report(
+    analysis_results: Dict[str, FieldAnalysis]
+) -> pd.DataFrame:
+    """
+    Generate a detailed report of field mappings
+
+    Args:
+        analysis_results: Dictionary of FieldAnalysis results
+
+    Returns:
+        DataFrame containing the field mapping report
+    """
+    report_data = []
+    for field_name, analysis in analysis_results.items():
+        report_data.append(
+            {
+                "Field Name": field_name,
+                "Suggested Type": analysis.suggested_type,
+                "Confidence": f"{analysis.confidence:.2%}",
+                "Unique Ratio": f"{analysis.unique_ratio:.2%}",
+                "Null Ratio": f"{analysis.null_ratio:.2%}",
+                "Sample Values": ", ".join(str(x) for x in analysis.sample_values[:3]),
+                "Validation Pattern": analysis.validation_pattern,
+            }
+        )
+
+    return pd.DataFrame(report_data)
